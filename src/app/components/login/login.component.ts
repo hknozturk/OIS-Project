@@ -10,7 +10,7 @@ export class LoginComponent implements OnInit {
   constructor(private dataService: DataServiceService) {}
 
   ngOnInit() {
-    this.dataService.getUsers().subscribe(res => {
+    this.dataService.authenticate().subscribe(res => {
       console.log('First Try Out Baby: ', res);
     });
   }

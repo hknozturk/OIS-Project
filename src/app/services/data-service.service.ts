@@ -31,4 +31,20 @@ export class DataServiceService {
         catchError(this.handleError<JSON>(`getUsers`, null))
       );
   }
+
+  authenticate(): Observable<any> {
+    const user_email = 'hkn.ozturk.94@gmail.com';
+    const user_password = 'hkn.230294xx';
+
+    return this.http
+      .post(
+        'http://localhost:8000/authenticate',
+        { email: user_email, password: user_password },
+        { headers: { 'Content-Type': 'application/json' } }
+      )
+      .pipe(
+        tap(authUser => console.log('auth User: ', authUser)),
+        catchError(this.handleError(`authenticate`, null))
+      );
+  }
 }
