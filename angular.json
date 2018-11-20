@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "OIS-Project": {
+    "OIS-Frontend": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/OIS-Project",
+            "outputPath": "dist/OIS-Frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -61,18 +61,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "OIS-Project:build"
+            "browserTarget": "OIS-Frontend:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "OIS-Project:build:production"
+              "browserTarget": "OIS-Frontend:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "OIS-Project:build"
+            "browserTarget": "OIS-Frontend:build"
           }
         },
         "test": {
@@ -106,7 +106,7 @@
         }
       }
     },
-    "OIS-Project-e2e": {
+    "OIS-Frontend-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -115,11 +115,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "OIS-Project:serve"
+            "devServerTarget": "OIS-Frontend:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "OIS-Project:serve:production"
+              "devServerTarget": "OIS-Frontend:serve:production"
             }
           }
         },
@@ -135,5 +135,5 @@
       }
     }
   },
-  "defaultProject": "OIS-Project"
+  "defaultProject": "OIS-Frontend"
 }

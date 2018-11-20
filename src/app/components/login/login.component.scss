@@ -1,0 +1,90 @@
+.wrapper {
+  background-image: url('../../../assets/medi_background.png');
+  min-height: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.container {
+  background-color: #a3dfd4;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 80px 0;
+  height: 480px;
+  text-align: center;
+  opacity: 0.8;
+  border-radius: 6px;
+}
+.container h1 {
+  font-size: 40px;
+  transition-duration: 1s;
+  transition-timing-function: ease-in-put;
+  font-weight: 200;
+}
+form {
+  padding: 20px 0;
+  position: relative;
+  z-index: 2;
+}
+form input {
+  outline: 0;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 250px;
+  border-radius: 3px;
+  padding: 10px 15px;
+  margin: 0 auto 10px auto;
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  color: white;
+  transition-duration: 0.25s;
+  font-weight: 400;
+}
+form input:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+form input:focus {
+  background-color: white;
+  color: black;
+}
+form button {
+  outline: 0;
+  background-color: white;
+  border: 0;
+  padding: 10px 15px;
+  color: #a3dfd4;
+  border-radius: 3px;
+  width: 250px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bolder;
+  transition-duration: 0.25s;
+}
+form button:hover {
+  background-color: #f5f7f9;
+}
+
+form div {
+  padding: 50px 0;
+}
+
+.register {
+  outline: 0;
+  background: transparent;
+  border: 0;
+  width: 250px;
+  color: rgba(255, 68, 0, 0.753);
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.register:hover {
+  color: rgba(255, 68, 0, 0.904);
+}
