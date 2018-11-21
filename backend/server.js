@@ -30,14 +30,6 @@ app.listen(8000, () => {
   console.log('Server listens port 8000');
 });
 
-app.route('/users').get((req, res) => {
-  mysql_con.query('SELECT * FROM ois.users ', function(err, results) {
-    if (err) throw err;
-
-    return res.send({ results });
-  });
-});
-
 /**
  * user e-mail and password check
  */
@@ -45,64 +37,62 @@ app.route('/authenticate').post((req, res) => {
   let user_email = req.body.email;
   let user_password = req.body.password;
 
-  console.log(req.body);
+  mysql_con.query('SELECT * FROM ois.users WHERE email=?', user_email, function(
+    err,
+    results
+  ) {
+    if (err) {
+      throw err;
+    } else {
+      if (results.length > 0) {
+        bcrypt.compare(user_password, results[0].password, function(
+          err,
+          compareResult
+        ) {
+          if (err) throw err;
 
-  bcrypt.hash(user_password, 10, function(err, hash) {
-    if (err) throw err;
-    mysql_con.query(
-      'SELECT * FROM ois.users WHERE email=?',
-      user_email,
-      function(err, results, fields) {
-        if (err) {
-          res.send({
-            code: 400,
-            failed: 'error occured'
-          });
-        } else {
-          if (results.length > 0) {
-            if (results[0].password == hash) {
-              res.send({
-                code: 200,
-                success: 'login successful',
-                data: results[0]
-              });
-            } else {
-              res.send({
-                code: 204,
-                success: 'Email and password does not match'
-              });
-            }
+          if (compareResult) {
+            res.send({
+              data: results[0],
+              message: 'User Succesfully Authenticated'
+            });
           } else {
             res.send({
-              code: 204,
-              success: 'Email does not exists'
+              data: [],
+              message: 'User Authenticated Failed!'
             });
           }
-        }
+        });
+      } else {
+        console.log('email does not exists');
       }
-    );
+    }
   });
 });
 
-app.post('/register', function(req, res) {
-  let user = req.body.user;
+app.route('/register').post((req, res) => {
+  // if (!user) {
+  //   return res
+  //     .status(400)
+  //     .send({ error: true, message: 'Please provide user info' });
+  // }
 
-  if (!user) {
-    return res
-      .status(400)
-      .send({ error: true, message: 'Please provide user info' });
-  }
+  bcrypt.hash(req.body.password, 10, (err, hash) => {
+    if (err) throw err;
 
-  mysql_con.query('INSERT INTO users SET ? ', { user: user }, function(
-    error,
-    results,
-    fields
-  ) {
-    if (error) throw error;
-    return res.send({
-      error: false,
-      data: results,
-      message: 'New User Registered.'
+    req.body.password = hash;
+
+    mysql_con.query('INSERT INTO ois.users SET ? ', req.body, function(
+      error,
+      results
+    ) {
+      if (error) throw error;
+
+      return res.send({
+        error: false,
+        data: results,
+        message: 'New User Registered.'
+      });
     });
   });
 });

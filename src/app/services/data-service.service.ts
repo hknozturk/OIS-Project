@@ -7,6 +7,8 @@ import {
 } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 
+import { User } from '../models/user';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -33,7 +35,7 @@ export class DataServiceService {
   }
 
   authenticate(): Observable<any> {
-    const user_email = 'hkn.ozturk.94@gmail.com';
+    const user_email = 'hkn.ozturk@windowslive.com';
     const user_password = 'hkn.230294xx';
 
     return this.http
@@ -45,6 +47,26 @@ export class DataServiceService {
       .pipe(
         tap(authUser => console.log('auth User: ', authUser)),
         catchError(this.handleError(`authenticate`, null))
+      );
+  }
+
+  registration(): Observable<any> {
+    const user = new User(
+      'hkn.ozturk@windowslive.com',
+      'Hakan',
+      'Yoztyurk',
+      24,
+      'Male',
+      'hkn.230294xx'
+    );
+
+    return this.http
+      .post('http://localhost:8000/register', user, {
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .pipe(
+        tap(res => console.log('registered user: ', res)),
+        catchError(this.handleError(`registration`, null))
       );
   }
 }

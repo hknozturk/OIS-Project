@@ -14,4 +14,10 @@ export class LoginComponent implements OnInit {
       console.log('First Try Out Baby: ', res);
     });
   }
+
+  register() {
+    this.dataService.registration().subscribe(res => {
+      console.log('Registration Process: ', res);
+    });
+  }
 }
