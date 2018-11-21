@@ -7,17 +7,32 @@ import { DataServiceService } from '../../services/data-service.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  user_email: String;
+  user_password: String;
+  showAlert = false;
   constructor(private dataService: DataServiceService) {}
 
-  ngOnInit() {
-    this.dataService.authenticate().subscribe(res => {
-      console.log('First Try Out Baby: ', res);
-    });
+  ngOnInit() {}
+
+  login() {
+    if (this.user_email === '' || typeof this.user_email === 'undefined') {
+      console.log('Please put your email address');
+    }
+
+    if (this.user_email.length > 0 && this.user_password.length > 0) {
+      this.dataService
+        .authenticate(this.user_email, this.user_password)
+        .subscribe(res => {
+          if (res.data.email) {
+            // route to other page
+          } else {
+            this.showAlert = true;
+          }
+        });
+    }
   }
 
   register() {
-    this.dataService.registration().subscribe(res => {
-      console.log('Registration Process: ', res);
-    });
+    this.dataService.registration().subscribe(res => {});
   }
 }

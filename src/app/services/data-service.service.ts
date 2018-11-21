@@ -23,20 +23,9 @@ export class DataServiceService {
     };
   }
 
-  getUsers(): Observable<any> {
-    return this.http
-      .get<any>('http://localhost:8000/users', {
-        headers: { 'Content-Type': 'application/json' }
-      })
-      .pipe(
-        tap(users => console.log('fetched users: ', users)),
-        catchError(this.handleError<JSON>(`getUsers`, null))
-      );
-  }
-
-  authenticate(): Observable<any> {
-    const user_email = 'hkn.ozturk@windowslive.com';
-    const user_password = 'hkn.230294xx';
+  authenticate(email, password): Observable<any> {
+    const user_email = email;
+    const user_password = password;
 
     return this.http
       .post(
@@ -44,10 +33,7 @@ export class DataServiceService {
         { email: user_email, password: user_password },
         { headers: { 'Content-Type': 'application/json' } }
       )
-      .pipe(
-        tap(authUser => console.log('auth User: ', authUser)),
-        catchError(this.handleError(`authenticate`, null))
-      );
+      .pipe(catchError(this.handleError(`authenticate`, null)));
   }
 
   registration(): Observable<any> {

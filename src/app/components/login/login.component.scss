@@ -88,3 +88,11 @@ form div {
 .register:hover {
   color: rgba(255, 68, 0, 0.904);
 }
+
+.alert {
+  position: fixed;
+  z-index: 10;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
