@@ -64,7 +64,10 @@ app.route('/authenticate').post((req, res) => {
           }
         });
       } else {
-        console.log('email does not exists');
+        res.send({
+          data: [],
+          message: 'Email does not exists'
+        });
       }
     }
   });
