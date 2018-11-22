@@ -13,6 +13,7 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class DataServiceService {
+  isLoggedIn = false;
   constructor(private http: HttpClient) {}
 
   private handleError<T>(operation = 'operation', result?: T) {
@@ -33,7 +34,18 @@ export class DataServiceService {
         { email: user_email, password: user_password },
         { headers: { 'Content-Type': 'application/json' } }
       )
-      .pipe(catchError(this.handleError(`authenticate`, null)));
+      .pipe(
+        tap(res => {
+          console.log(res['message']);
+          if (
+            res['message'] === 'User Succesfully Authenticated' &&
+            user_email === res['data'].email
+          ) {
+            this.isLoggedIn = true;
+          }
+        }),
+        catchError(this.handleError(`authenticate`, null))
+      );
   }
 
   registration(): Observable<any> {
@@ -50,9 +62,6 @@ export class DataServiceService {
       .post('http://localhost:8000/register', user, {
         headers: { 'Content-Type': 'application/json' }
       })
-      .pipe(
-        tap(res => console.log('registered user: ', res)),
-        catchError(this.handleError(`registration`, null))
-      );
+      .pipe(catchError(this.handleError(`registration`, null)));
   }
 }

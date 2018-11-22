@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataServiceService } from '../../services/data-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,10 @@ export class LoginComponent implements OnInit {
   user_password: String;
   warning_message: String;
   showAlert = false;
-  constructor(private dataService: DataServiceService) {}
+  constructor(
+    private dataService: DataServiceService,
+    private router: Router
+  ) {}
 
   ngOnInit() {}
 
@@ -27,9 +31,8 @@ export class LoginComponent implements OnInit {
       this.dataService
         .authenticate(this.user_email, this.user_password)
         .subscribe(res => {
-          console.log(res);
-          if (res.data.email) {
-            // route to other page
+          if (this.dataService.isLoggedIn) {
+            this.router.navigate(['/profile']);
           } else if (res.message === 'Email does not exists') {
             this.warning_message = `Email doesn't exists!`;
             this.showAlert = true;
