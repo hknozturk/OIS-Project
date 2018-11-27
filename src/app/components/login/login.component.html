@@ -16,7 +16,7 @@
         [(ngModel)]="user_password"
       />
       <button type="submit" id="login-button" (click)="login()">Login</button>
-      <div><span class="register" (click)="register()">Register</span></div>
+      <div><span class="register" routerLink="/register">Register</span></div>
     </form>
   </div>
   <div *ngIf="showAlert" class="alert alert-danger" role="alert">
