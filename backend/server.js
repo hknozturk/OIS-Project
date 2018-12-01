@@ -37,7 +37,7 @@ app.route('/authenticate').post((req, res) => {
   let user_email = req.body.email;
   let user_password = req.body.password;
 
-  mysql_con.query('SELECT * FROM ois.users WHERE email=?', user_email, function(
+  mysql_con.query('SELECT * FROM ois.user WHERE email=?', user_email, function(
     err,
     results
   ) {
@@ -73,29 +73,43 @@ app.route('/authenticate').post((req, res) => {
   });
 });
 
-app.route('/register').post((req, res) => {
-  // if (!user) {
-  //   return res
-  //     .status(400)
-  //     .send({ error: true, message: 'Please provide user info' });
-  // }
+app.route('/getenumtypes').get((req, res) => {
+  mysql_con.query(
+    "SHOW COLUMNS FROM ois.user WHERE Field = 'gender' or Field = 'blood_type'",
+    function(err, result) {
+      if (err) {
+        throw err;
+      } else {
+        res.send({
+          data: result
+        });
+      }
+    }
+  );
+});
 
+app.route('/postnewuser').post((req, res) => {
   bcrypt.hash(req.body.password, 10, (err, hash) => {
     if (err) throw err;
 
     req.body.password = hash;
-
-    mysql_con.query('INSERT INTO ois.users SET ? ', req.body, function(
-      error,
+    mysql_con.query('INSERT INTO ois.user SET ? ', req.body, function(
+      err,
       results
     ) {
-      if (error) throw error;
-
-      return res.send({
-        error: false,
-        data: results,
-        message: 'New User Registered.'
-      });
+      if (err) {
+        return res.send({
+          error: true,
+          data: [],
+          message: 'Email exists'
+        });
+      } else {
+        return res.send({
+          error: false,
+          data: results,
+          message: 'Registration successful'
+        });
+      }
     });
   });
 });

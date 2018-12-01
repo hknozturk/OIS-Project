@@ -1,3 +1,207 @@
-<p>
-  registration works!
-</p>
+<div class="register-container col-12">
+  <div class="row justify-content-center">
+    <div class="card col-10 col-md-8 col-lg-6">
+      <form class="p-2">
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="firstname">First name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstname"
+              placeholder="First name"
+              required
+              [(ngModel)]="firstname"
+              name="firstname"
+            />
+            <div class="invalid-feedback">Please enter your first name</div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="lastname">Last name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastname"
+              placeholder="Last name"
+              required
+              [(ngModel)]="lastname"
+              name="lastname"
+            />
+            <div class="invalid-feedback">Please enter your last name</div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="email">E-mail</label>
+            <div class="input-group" (click)="clickOnEmail()">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupPrepend3">@</span>
+              </div>
+              <input
+                type="text"
+                class="form-control"
+                id="email"
+                placeholder="E-mail"
+                aria-describedby="inputGroupPrepend3"
+                required
+                [(ngModel)]="email"
+                name="email"
+              />
+              <div class="invalid-feedback">{{ emailWarning }}</div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Password"
+              required
+              [(ngModel)]="password"
+              name="password"
+            />
+            <div class="invalid-feedback">
+              Password needs more than 6 characters
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="gender">Gender</label>
+            <select
+              class="custom-select"
+              id="gender"
+              required
+              [(ngModel)]="gender"
+              name="gender"
+              (ngModelChange)="getGenderValue($event)"
+            >
+              <option *ngFor="let gender of gendertypes" [ngValue]="gender">{{
+                gender
+              }}</option>
+            </select>
+            <div class="invalid-feedback">Please choose gender</div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="blood">Blood Type</label>
+            <select
+              class="custom-select"
+              id="blood"
+              required
+              (ngModelChange)="getBloodType($event)"
+              [(ngModel)]="bloodType"
+              name="bloodType"
+            >
+              <option
+                *ngFor="let bloodtype of bloodtypes"
+                [ngValue]="bloodtype"
+                >{{ bloodtype }}</option
+              >
+            </select>
+            <div class="invalid-feedback">Please choose blood-type</div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-4 mb-3">
+            <label for="age">Age</label>
+            <input
+              type="number"
+              min="1"
+              max="999"
+              class="form-control"
+              id="age"
+              placeholder="Age"
+              required
+              [(ngModel)]="age"
+              name="age"
+            />
+            <div class="invalid-feedback">Please enter your age</div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="height">Height</label>
+            <input
+              type="number"
+              min="1"
+              max="999"
+              class="form-control"
+              id="height"
+              placeholder="Height"
+              required
+              [(ngModel)]="height"
+              name="height"
+            />
+            <div class="invalid-feedback">Please enter your height</div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label for="weight">Weight</label>
+            <input
+              type="number"
+              min="1"
+              max="999"
+              class="form-control"
+              id="weight"
+              placeholder="Weight"
+              required
+              [(ngModel)]="weight"
+              name="weight"
+            />
+            <div class="invalid-feedback">Please enter your weight</div>
+          </div>
+        </div>
+        <!--
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label for="validationServer03">City</label>
+              <input
+                type="text"
+                class="form-control is-invalid"
+                id="validationServer03"
+                placeholder="City"
+                required
+              />
+              <div class="invalid-feedback">Please provide a valid city.</div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="validationServer04">State</label>
+              <input
+                type="text"
+                class="form-control is-invalid"
+                id="validationServer04"
+                placeholder="State"
+                required
+              />
+              <div class="invalid-feedback">Please provide a valid state.</div>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="validationServer05">Zip</label>
+              <input
+                type="text"
+                class="form-control is-invalid"
+                id="validationServer05"
+                placeholder="Zip"
+                required
+              />
+              <div class="invalid-feedback">Please provide a valid zip.</div>
+            </div>
+          </div>
+        -->
+        <button id="cancel" class="btn btn-danger mr-2" type="cancel">
+          Cancel
+        </button>
+        <button
+          id="submit"
+          class="btn btn-primary"
+          type="submit"
+          (click)="submit()"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+  <div *ngIf="showAlert" class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Warning!</h4>
+    <p>{{ emailWarning }}</p>
+  </div>
+</div>
