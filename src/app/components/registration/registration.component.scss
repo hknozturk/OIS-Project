@@ -1,0 +1,33 @@
+.register-container {
+  background-image: url('../../../assets/medi_background.png');
+  min-height: 100%;
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  height: 52%;
+}
+
+.card {
+  overflow: auto;
+}
+
+.alert {
+  position: fixed;
+  z-index: 10;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+button {
+  cursor: pointer;
+}

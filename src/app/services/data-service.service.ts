@@ -1,13 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpErrorResponse
-} from '@angular/common/http';
-import { catchError, tap, map } from 'rxjs/operators';
-
-import { User } from '../models/user';
+import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +30,6 @@ export class DataServiceService {
       )
       .pipe(
         tap(res => {
-          console.log(res['message']);
           if (
             res['message'] === 'User Succesfully Authenticated' &&
             user_email === res['data'].email
@@ -48,20 +41,15 @@ export class DataServiceService {
       );
   }
 
-  registration(): Observable<any> {
-    const user = new User(
-      'hkn.ozturk@windowslive.com',
-      'Hakan',
-      'Yoztyurk',
-      24,
-      'Male',
-      'hkn.230294xx'
-    );
+  getEnumTypes(): Observable<any> {
+    return this.http.get('http://localhost:8000/getenumtypes', {
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
 
-    return this.http
-      .post('http://localhost:8000/register', user, {
-        headers: { 'Content-Type': 'application/json' }
-      })
-      .pipe(catchError(this.handleError(`registration`, null)));
+  userRegistration(user): Observable<any> {
+    return this.http.post('http://localhost:8000/postnewuser', user, {
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 }
