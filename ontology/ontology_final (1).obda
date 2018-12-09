@@ -1,0 +1,29 @@
+[PrefixDeclaration]
+:		http://www.mydoc.be#
+owl:		http://www.w3.org/2002/07/owl#
+rdf:		http://www.w3.org/1999/02/22-rdf-syntax-ns#
+xml:		http://www.w3.org/XML/1998/namespace
+xsd:		http://www.w3.org/2001/XMLSchema#
+rdfs:		http://www.w3.org/2000/01/rdf-schema#
+
+[SourceDeclaration]
+sourceUri	datasource1
+connectionUrl	jdbc:mysql://localhost:3306/ois
+username	root
+password	
+driverClass	com.mysql.jdbc.Driver
+
+[MappingDeclaration] @collection [[
+mappingId	urn:MAPID-4b337ebad3bf46b2b3990c4fa2b7b6fe
+target		:doctor/{INAMI} a :Doctor ; :inami {INAMI} ; :doctor_name {lastname} . 
+source		SELECT INAMI, firstname, lastname FROM Doctor
+
+mappingId	urn:MAPID-4b337ebad3bf46b2b3990c4fa2b7b6fe(0)
+target		:drug/{INN} a :Drug ; :drug_name {name} . 
+source		SELECT INN, name FROM Drug
+
+mappingId	urn:MAPID-4b337ebad3bf46b2b3990c4fa2b7b6fe(0)(0)
+target		<user_{user_id}> :has_disease <{disease_id}> . 
+source		SELECT user_id, disease_id  FROM Suffers_from
+]]
+
