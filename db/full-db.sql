@@ -98,11 +98,11 @@ DROP TABLE IF EXISTS `Doctor`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Doctor` (
   `INAMI` int(11) DEFAULT NULL,
-  `lastaname` varchar(45) DEFAULT NULL,
+  `lastname` varchar(45) DEFAULT NULL,
   `firstname` varchar(45) DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111,6 +111,7 @@ CREATE TABLE `Doctor` (
 
 LOCK TABLES `Doctor` WRITE;
 /*!40000 ALTER TABLE `Doctor` DISABLE KEYS */;
+INSERT INTO `Doctor` VALUES (1,'Smith','Jhon',1),(765765,'Blabliblou','Blala',2);
 /*!40000 ALTER TABLE `Doctor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,10 +125,10 @@ DROP TABLE IF EXISTS `Drug`;
 CREATE TABLE `Drug` (
   `INN` int(11) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   UNIQUE KEY `INN_UNIQUE` (`INN`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,6 +137,7 @@ CREATE TABLE `Drug` (
 
 LOCK TABLES `Drug` WRITE;
 /*!40000 ALTER TABLE `Drug` DISABLE KEYS */;
+INSERT INTO `Drug` VALUES (897987,'Antibiotic',1);
 /*!40000 ALTER TABLE `Drug` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150,9 +152,9 @@ CREATE TABLE `Heals` (
   `disease_id` int(11) NOT NULL,
   `drug_id` int(11) NOT NULL,
   PRIMARY KEY (`disease_id`,`drug_id`),
-  KEY `drug_fk_idx` (`drug_id`),
+  KEY `fk_Heals_1_idx` (`drug_id`),
   CONSTRAINT `disease_fk` FOREIGN KEY (`disease_id`) REFERENCES `Disease` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `drug_fk` FOREIGN KEY (`drug_id`) REFERENCES `Drug` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_Heals_1` FOREIGN KEY (`drug_id`) REFERENCES `Drug` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -276,12 +278,10 @@ DROP TABLE IF EXISTS `Suffers_from`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Suffers_from` (
-  `usier_id` int(11) NOT NULL,
-  `disease_id` int(11) NOT NULL,
-  PRIMARY KEY (`usier_id`,`disease_id`),
-  KEY `disease_id_fk_idx` (`disease_id`),
-  CONSTRAINT `disease_id_fk` FOREIGN KEY (`disease_id`) REFERENCES `Disease` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `user_id_fk` FOREIGN KEY (`usier_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  `user_id` int(11) NOT NULL,
+  `disease_id` varchar(255) NOT NULL,
+  PRIMARY KEY (`user_id`,`disease_id`),
+  CONSTRAINT `fk_Suffers_from_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -291,6 +291,7 @@ CREATE TABLE `Suffers_from` (
 
 LOCK TABLES `Suffers_from` WRITE;
 /*!40000 ALTER TABLE `Suffers_from` DISABLE KEYS */;
+INSERT INTO `Suffers_from` VALUES (1,'http://purl.obolibrary.org/obo/DOID_0040002');
 /*!40000 ALTER TABLE `Suffers_from` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -379,18 +380,18 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `first_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `last_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `age` int(3) NOT NULL,
-  `gender` enum('male','female') COLLATE utf8_unicode_ci DEFAULT NULL,
+  `gender` enum('male','female') DEFAULT NULL,
   `height` int(3) NOT NULL,
   `weight` int(3) NOT NULL,
-  `blood_type` enum('0 Rh+','0 Rh-','A Rh+','A Rh-','B Rh+','B Rh-','AB Rh+','AB Rh-') COLLATE utf8_unicode_ci DEFAULT NULL,
+  `blood_type` enum('0 Rh+','0 Rh-','A Rh+','A Rh-','B Rh+','B Rh-','AB Rh+','AB Rh-') DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -412,4 +413,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-07 20:00:12
+-- Dump completed on 2018-12-09 18:04:06
