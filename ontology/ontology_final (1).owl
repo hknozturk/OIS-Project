@@ -1,0 +1,488 @@
+@prefix : <http://www.mydoc.be#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.mydoc.be> .
+
+<http://www.mydoc.be> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.mydoc.be#alternative
+:alternative rdf:type owl:ObjectProperty .
+
+
+###  http://www.mydoc.be#colleagues
+:colleagues rdf:type owl:ObjectProperty .
+
+
+###  http://www.mydoc.be#contains
+:contains rdf:type owl:ObjectProperty ;
+          rdfs:domain :Health_Condition ;
+          rdfs:range :Symptom .
+
+
+###  http://www.mydoc.be#has_disease
+:has_disease rdf:type owl:ObjectProperty ;
+             rdfs:domain :User ;
+             rdfs:range :Disease .
+
+
+###  http://www.mydoc.be#heals
+:heals rdf:type owl:ObjectProperty ;
+       rdfs:subPropertyOf owl:topObjectProperty ;
+       rdfs:domain :Drug ;
+       rdfs:range :Disease .
+
+
+###  http://www.mydoc.be#includes
+:includes rdf:type owl:ObjectProperty ;
+          rdfs:domain :Hospital ;
+          rdfs:range :Department .
+
+
+###  http://www.mydoc.be#isCommonConsequence
+:isCommonConsequence rdf:type owl:ObjectProperty ;
+                     rdfs:domain :Symptom ;
+                     rdfs:range :Symptom .
+
+
+###  http://www.mydoc.be#isPresent
+:isPresent rdf:type owl:ObjectProperty .
+
+
+###  http://www.mydoc.be#is_located
+:is_located rdf:type owl:ObjectProperty ;
+            rdfs:domain :Hospital ;
+            rdfs:range :Address .
+
+
+###  http://www.mydoc.be#is_specialized
+:is_specialized rdf:type owl:ObjectProperty ;
+                rdfs:domain :Department ;
+                rdfs:range :Disease .
+
+
+###  http://www.mydoc.be#lives_at
+:lives_at rdf:type owl:ObjectProperty ;
+          rdfs:domain :User ;
+          rdfs:range :Address .
+
+
+###  http://www.mydoc.be#provides
+:provides rdf:type owl:ObjectProperty ;
+          rdfs:domain :User ;
+          rdfs:range :Health_Condition .
+
+
+###  http://www.mydoc.be#shouldTake
+:shouldTake rdf:type owl:ObjectProperty .
+
+
+###  http://www.mydoc.be#works
+:works rdf:type owl:ObjectProperty ;
+       rdfs:domain :Doctor ;
+       rdfs:range :Department .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.mydoc.be#INN
+:INN rdf:type owl:DatatypeProperty ;
+     rdfs:domain :Drug ;
+     rdfs:range xsd:string .
+
+
+###  http://www.mydoc.be#age
+:age rdf:type owl:DatatypeProperty ;
+     rdfs:domain :User ;
+     rdfs:range xsd:integer .
+
+
+###  http://www.mydoc.be#blood_type
+:blood_type rdf:type owl:DatatypeProperty ;
+            rdfs:domain :User ;
+            rdfs:range xsd:string .
+
+
+###  http://www.mydoc.be#city
+:city rdf:type owl:DatatypeProperty ;
+      rdfs:domain :Address ;
+      rdfs:range xsd:string .
+
+
+###  http://www.mydoc.be#country
+:country rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Address ;
+         rdfs:range xsd:string .
+
+
+###  http://www.mydoc.be#date
+:date rdf:type owl:DatatypeProperty ;
+      rdfs:domain :Health_Condition ;
+      rdfs:range xsd:dateTime .
+
+
+###  http://www.mydoc.be#doctor_name
+:doctor_name rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Doctor ;
+             rdfs:range xsd:string .
+
+
+###  http://www.mydoc.be#doid_id
+:doid_id rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Disease ;
+         rdfs:range xsd:string .
+
+
+###  http://www.mydoc.be#drug_name
+:drug_name rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Drug ;
+           rdfs:range xsd:string .
+
+
+###  http://www.mydoc.be#email
+:email rdf:type owl:DatatypeProperty ;
+       rdfs:domain :User ;
+       rdfs:range xsd:string .
+
+
+###  http://www.mydoc.be#firstname
+:firstname rdf:type owl:DatatypeProperty ;
+           rdfs:domain :User ;
+           rdfs:range xsd:string .
+
+
+###  http://www.mydoc.be#gender
+:gender rdf:type owl:DatatypeProperty ;
+        rdfs:domain :User ;
+        rdfs:range xsd:string .
+
+
+###  http://www.mydoc.be#height
+:height rdf:type owl:DatatypeProperty ;
+        rdfs:domain :User ;
+        rdfs:range xsd:integer .
+
+
+###  http://www.mydoc.be#hospital_name
+:hospital_name rdf:type owl:DatatypeProperty ;
+               rdfs:domain :Hospital ;
+               rdfs:range xsd:string .
+
+
+###  http://www.mydoc.be#inami
+:inami rdf:type owl:DatatypeProperty ;
+       rdfs:subPropertyOf owl:topDataProperty ;
+       rdfs:domain :Doctor ;
+       rdfs:range xsd:int .
+
+
+###  http://www.mydoc.be#lastname
+:lastname rdf:type owl:DatatypeProperty ;
+          rdfs:domain :User ;
+          rdfs:range xsd:string .
+
+
+###  http://www.mydoc.be#number
+:number rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Address ;
+        rdfs:range xsd:int .
+
+
+###  http://www.mydoc.be#severity
+:severity rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Health_Condition ;
+          rdfs:range xsd:integer .
+
+
+###  http://www.mydoc.be#street_name
+:street_name rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Address ;
+             rdfs:range xsd:string .
+
+
+###  http://www.mydoc.be#symp_id
+:symp_id rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Symptom ;
+         rdfs:range xsd:string .
+
+
+###  http://www.mydoc.be#weight
+:weight rdf:type owl:DatatypeProperty ;
+        rdfs:domain :User ;
+        rdfs:range xsd:integer .
+
+
+###  http://www.mydoc.be#zip_code
+:zip_code rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Address ;
+          rdfs:range xsd:int .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.mydoc.be#Address
+:Address rdf:type owl:Class .
+
+
+###  http://www.mydoc.be#Department
+:Department rdf:type owl:Class .
+
+
+###  http://www.mydoc.be#Disease
+:Disease rdf:type owl:Class .
+
+
+###  http://www.mydoc.be#Doctor
+:Doctor rdf:type owl:Class .
+
+
+###  http://www.mydoc.be#Drug
+:Drug rdf:type owl:Class .
+
+
+###  http://www.mydoc.be#Health_Condition
+:Health_Condition rdf:type owl:Class .
+
+
+###  http://www.mydoc.be#Hospital
+:Hospital rdf:type owl:Class .
+
+
+###  http://www.mydoc.be#Symptom
+:Symptom rdf:type owl:Class .
+
+
+###  http://www.mydoc.be#User
+:User rdf:type owl:Class .
+
+
+#################################################################
+#    Rules
+#################################################################
+
+<urn:swrl:var#doc2> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#dep> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#doc1> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#d> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#a> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#b> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#u1> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#d1> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#ad> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#c> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#dr> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#u> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+<urn:swrl:var#di> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :works ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#doc2> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#dep>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DifferentIndividualsAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#doc1> ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#doc2>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :Doctor ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#doc2>
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#classPredicate> :Department ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#dep>
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :Doctor ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#doc1>
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :works ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#doc1> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#dep>
+                                                                                                            ] ;
+                                                                                                  rdf:rest rdf:nil
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :colleagues ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#doc1> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#doc2>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Disease ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#d>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> :Drug ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#a>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :heals ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#b> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#d>
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#classPredicate> :Drug ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#b>
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DifferentIndividualsAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#a> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#b>
+                                                                                                 ] ;
+                                                                                       rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                                  rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#propertyPredicate> :heals ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#a> ;
+                                                                                                              <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#d>
+                                                                                                            ] ;
+                                                                                                  rdf:rest rdf:nil
+                                                                                                ]
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :alternative ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#a> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#b>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :User ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#u1>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> :Disease ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#d1>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :has_disease ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#u1> ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#d1>
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :lives_at ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#u1> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#ad>
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> :country ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#ad> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#c>
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :isPresent ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#d1> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#c>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :Drug ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#dr>
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> :User ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#u>
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#classPredicate> :Disease ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#di>
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :has_disease ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#u> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#di>
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#propertyPredicate> :heals ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#dr> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#di>
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :shouldTake ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl:var#u> ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl:var#dr>
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+###  Generated by the OWL API (version 4.5.6.2018-09-06T00:27:41Z) https://github.com/owlcs/owlapi
