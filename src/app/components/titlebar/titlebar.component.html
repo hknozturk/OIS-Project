@@ -23,10 +23,20 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link active" routerLink="/symptoms">Symptoms</a>
+        <a
+          class="nav-link"
+          routerLink="/symptoms"
+          [ngClass]="{ active: activeRouteSegment === 'symptoms' }"
+          >Symptoms</a
+        >
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/diseases">Diseases</a>
+        <a
+          class="nav-link"
+          routerLink="/diseases"
+          [ngClass]="{ active: activeRouteSegment === 'diseases' }"
+          >Diseases</a
+        >
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/login">Login</a>
