@@ -1,0 +1,15 @@
+.container {
+  background-image: url('../../../assets/medi_background2.jpeg');
+  min-height: 100%;
+  height: 93vh;
+  display: flex;
+  align-items: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.welcome-text {
+  text-align: center;
+}
