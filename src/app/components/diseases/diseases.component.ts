@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataServiceService } from 'src/app/services/data-service.service';
 
 @Component({
   selector: 'app-diseases',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./diseases.component.scss']
 })
 export class DiseasesComponent implements OnInit {
-
-  constructor() { }
+  constructor(private dataService: DataServiceService) {}
 
   ngOnInit() {
+    this.dataService.queryDiseaseOnt().subscribe(res => {
+      console.log(res);
+    });
   }
-
 }
