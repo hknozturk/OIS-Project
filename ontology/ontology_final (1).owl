@@ -129,6 +129,11 @@
       rdfs:range xsd:dateTime .
 
 
+###  http://www.mydoc.be#department_name
+:department_name rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Department .
+
+
 ###  http://www.mydoc.be#doctor_name
 :doctor_name rdf:type owl:DatatypeProperty ;
              rdfs:domain :Doctor ;
