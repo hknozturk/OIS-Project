@@ -43,7 +43,6 @@ export class TitlebarComponent implements OnInit, OnDestroy {
         )
         .subscribe(s => {
           self.activeRouteSegment = s;
-          console.log(this.activeRouteSegment);
         });
     }
   }
