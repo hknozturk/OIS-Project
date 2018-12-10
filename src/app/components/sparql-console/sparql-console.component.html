@@ -1,0 +1,72 @@
+
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        
+        <!-- Medical User Assistant -->
+        <title>Medusa</title>
+
+        <link href='http://cdn.jsdelivr.net/yasqe/2.2/yasqe.min.css' rel='stylesheet' type='text/css'/>
+    </head>
+
+    <body>
+
+        <div id="content">
+            <h4>SPARQL Endpoint</h4>
+            <div id="yasqe"></div>
+            <br>
+            <div id="results"></div>
+        </div>
+        
+    </body>
+    <script src='http://cdn.jsdelivr.net/yasqe/2.2/yasqe.bundled.min.js'></script>
+    
+    <script>
+    YASQE.defaults.sparql.showQueryButton = true;
+    YASQE.defaults.sparql.endpoint = "sparql";
+    YASQE.defaults.sparql.callbacks.success =  function(data){ $('#results').html(json2table(data));  };
+
+    //finally, initialize YASQE
+    var yasqe = YASQE(document.getElementById("yasqe"));
+
+    function json2table(json, classes) {
+      var cols = Object.keys(json[0]);
+      
+      var headerRow = '';
+      var bodyRows = '';
+      
+      classes = classes || '';
+
+      function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+      }
+
+      cols.map(function(col) {
+        headerRow += '<th>' + capitalizeFirstLetter(col) + '</th>';
+      });
+
+      json.map(function(row) {
+        bodyRows += '<tr>';
+
+        cols.map(function(colName) {
+          bodyRows += '<td>' + row[colName] + '</td>';
+        })
+
+        bodyRows += '</tr>';
+      });
+
+      return '<table class="' +
+            classes +
+            '"><thead><tr>' +
+            headerRow +
+            '</tr></thead><tbody>' +
+            bodyRows +
+            '</tbody></table>';
+    }
+    </script>
+</html>
