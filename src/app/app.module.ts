@@ -10,9 +10,12 @@ import { DataServiceService } from './services/data-service.service';
 import { UserPageComponent } from './components/user-page/user-page.component';
 import { PublicComponent } from './components/public/public.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { SymptomsComponent } from './components/symptoms/symptoms.component';
+import { DiseasesComponent } from './components/diseases/diseases.component';
+import { TitlebarComponent } from './components/titlebar/titlebar.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, UserPageComponent, PublicComponent, RegistrationComponent],
+  declarations: [AppComponent, LoginComponent, UserPageComponent, PublicComponent, RegistrationComponent, SymptomsComponent, DiseasesComponent, TitlebarComponent],
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [DataServiceService],
   bootstrap: [AppComponent]
