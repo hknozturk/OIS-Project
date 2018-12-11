@@ -13,7 +13,14 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { SparqlConsoleComponent } from './components/sparql-console/sparql-console.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, UserPageComponent, PublicComponent, RegistrationComponent, SparqlConsoleComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    UserPageComponent,
+    PublicComponent,
+    RegistrationComponent,
+    SparqlConsoleComponent
+  ],
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [DataServiceService],
   bootstrap: [AppComponent]
