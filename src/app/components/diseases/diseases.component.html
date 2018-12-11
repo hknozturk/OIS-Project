@@ -1,1 +1,22 @@
 <app-titlebar></app-titlebar>
+<div class="wrapper">
+  <div class="container">
+    <br>
+    <h1>Search for symptom information</h1>
+
+    <form class="form" (click)="showAlert = false">
+      <input
+        type="text"
+        placeholder="Description"
+        name="user_disease"
+        [(ngModel)]="user_symptom"
+      />
+
+      <button type="submit" id="login-button" (click)="search_symptom()">Search</button>
+    </form>
+  </div>
+  <div *ngIf="showAlert" class="alert alert-danger" role="alert">
+    <h4 class="alert-heading">Warning!</h4>
+    <p>{{ warning_message }}</p>
+  </div>
+</div>

@@ -4,31 +4,15 @@
     <br>
     <h1>Search for symptom information</h1>
 
-
-
-
-
-
     <form class="login-form" (click)="showAlert = false">
       <input
         type="text"
-        placeholder="Email"
-        name="user_email"
-        [(ngModel)]="user_email"
+        placeholder="Description"
+        name="user_symptom"
+        [(ngModel)]="user_symptom"
       />
-      <input
-        type="password"
-        placeholder="Password"
-        name="user_password"
-        [(ngModel)]="user_password"
-      />
-      <button type="submit" id="login-button" (click)="login()">Login</button>
-      <div class="register-button-container">
-        <span class="register" routerLink="/register">Register</span>
-      </div>
-      <div class="cancel-button-container">
-        <span class="cancel" routerLink="/public">Cancel</span>
-      </div>
+
+      <button type="submit" id="login-button" (click)="search_symptom()">Search</button>
     </form>
   </div>
   <div *ngIf="showAlert" class="alert alert-danger" role="alert">

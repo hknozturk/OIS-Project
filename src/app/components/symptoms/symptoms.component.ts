@@ -7,11 +7,16 @@ import { DataServiceService } from 'src/app/services/data-service.service';
   styleUrls: ['./symptoms.component.scss']
 })
 export class SymptomsComponent implements OnInit {
+  user_symptom: any;
   constructor(private dataService: DataServiceService) {}
 
   ngOnInit() {
     this.dataService.querySymptomOnt().subscribe(res => {
       console.log(res);
     });
+  }
+
+  search_symptom() {
+
   }
 }
