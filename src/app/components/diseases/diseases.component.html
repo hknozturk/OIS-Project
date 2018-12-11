@@ -2,8 +2,8 @@
 <div class="wrapper">
   <div class="container">
     <br>
-    <h1>Search for symptom information</h1>
-
+    <h1>Search for disease information</h1>
+    <br>
     <form class="form" (click)="showAlert = false">
       <input
         type="text"
@@ -11,7 +11,6 @@
         name="user_disease"
         [(ngModel)]="user_symptom"
       />
-
       <button type="submit" id="login-button" (click)="search_symptom()">Search</button>
     </form>
   </div>
