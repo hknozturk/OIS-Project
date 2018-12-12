@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `Address`;
 CREATE TABLE `Address` (
   `country` varchar(255) DEFAULT NULL,
   `city` varchar(255) DEFAULT NULL,
-  `number` varchar(255) DEFAULT NULL,
+  `number` int(11) DEFAULT NULL,
   `street_name` varchar(255) DEFAULT NULL,
   `zip_code` int(11) DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -39,7 +39,7 @@ CREATE TABLE `Address` (
 
 LOCK TABLES `Address` WRITE;
 /*!40000 ALTER TABLE `Address` DISABLE KEYS */;
-INSERT INTO `Address` VALUES ('Belgium','Brussels','12','Rue de la loi',1050,1),('Belgium','Brussels','10','Avenue de la couronne',1040,2);
+INSERT INTO `Address` VALUES ('Belgium','Brussels',12,'Rue de la loi',1050,1),('Belgium','Brussels',10,'Avenue de la couronne',1040,2);
 /*!40000 ALTER TABLE `Address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -414,4 +414,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-11 19:05:31
+-- Dump completed on 2018-12-12 18:35:14
