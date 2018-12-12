@@ -24,7 +24,7 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.scss"],
-            "scripts": ["node_modules/yasgui-yasqe"]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -78,7 +78,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": ["src/styles.scss"],
-            "scripts": ["node_modules/yasgui-yasqe"],
+            "scripts": [],
             "assets": ["src/favicon.ico", "src/assets"]
           }
         },
