@@ -9,6 +9,7 @@
         type="text"
         placeholder="Description"
         name="user_disease"
+        ng-model='searchText'
         [(ngModel)]="user_symptom"
       />
       <button type="submit" id="login-button" (click)="search_symptom()">Search</button>
