@@ -12,10 +12,21 @@ import { PublicComponent } from './components/public/public.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { SymptomsComponent } from './components/symptoms/symptoms.component';
 import { DiseasesComponent } from './components/diseases/diseases.component';
-import { TitlebarComponent } from './components/titlebar/titlebar.component';
+import { TitlebarComponent } from './views/titlebar/titlebar.component';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, UserPageComponent, PublicComponent, RegistrationComponent, SymptomsComponent, DiseasesComponent, TitlebarComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    UserPageComponent,
+    PublicComponent,
+    RegistrationComponent,
+    SymptomsComponent,
+    DiseasesComponent,
+    TitlebarComponent,
+    SearchPipe
+  ],
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [DataServiceService],
   bootstrap: [AppComponent]

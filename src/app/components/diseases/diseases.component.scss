@@ -1,0 +1,17 @@
+.my-card {
+  overflow: hidden;
+  height: 100%;
+}
+
+.active {
+  background-color: #44bec9;
+}
+
+.scrollable-container {
+  overflow-y: scroll;
+  height: 80vh;
+}
+
+.disease-description {
+  padding-top: 50px;
+}

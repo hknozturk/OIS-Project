@@ -61,12 +61,11 @@ export class DataServiceService {
     prefix xsd: <http://www.w3.org/2001/XMLSchema#> \n\
     prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> \n\
      \n\
-    SELECT ?symptom ?symptomName \n\
-    WHERE \n\
-    { \n\
+    SELECT DISTINCT ?symptomName ?symptom \n\
+    WHERE { \n\
     ?symptom rdfs:label ?symtomName . \n\
-     \n\
-    FILTER REGEX(STR(?symptom), "SYMP_")}';
+    FILTER REGEX(STR(?symptom), "SYMP_") \n\
+    }';
 
     return this.http.get('http://localhost:3030/ois/query', {
       headers: {
