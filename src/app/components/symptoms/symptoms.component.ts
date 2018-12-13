@@ -7,16 +7,24 @@ import { DataServiceService } from 'src/app/services/data-service.service';
   styleUrls: ['./symptoms.component.scss']
 })
 export class SymptomsComponent implements OnInit {
-  user_symptom: any;
+  symptoms: [];
+  symptomName = '';
+  symptomDescription = '';
+  selectedRow: number;
+  symptomSearch: string;
+
   constructor(private dataService: DataServiceService) {}
 
   ngOnInit() {
     this.dataService.querySymptomOnt().subscribe(res => {
       console.log(res);
+      this.symptoms = res.results.bindings;
     });
   }
 
-  search_symptom() {
-
-  }
+  // getDescription(index: number, symptom: {}) {
+  //   this.selectedRow = index;
+  //   this.diseaseName = symptom['diseaseName'].value;
+  //   this.diseaseDescription = disease['definition'].value;
+  // }
 }
