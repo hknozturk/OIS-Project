@@ -1,0 +1,18 @@
+### QUERY GET USER + DISEASE_NAME ####
+
+PREFIX : <http://www.mydoc.be#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX obo_class: <http://purl.obolibrary.org/obo/>
+PREFIX oboInOwl: <http://www.geneontology.org/formats/oboInOwl#>
+PREFIX doid: <http://purl.obolibrary.org/obo/doid#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+
+SELECT DISTINCT ?u ?diseaseName
+WHERE {
+  ?u :has_disease ?diseaseID .
+  ?diseaseID rdfs:label ?diseaseName .
+  ?diseaseID rdfs:subClassOf ?disease .
+  FILTER REGEX(STR(?diseaseID), 'DOID_')
+}

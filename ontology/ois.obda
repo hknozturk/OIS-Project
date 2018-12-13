@@ -17,7 +17,7 @@ target		:drug/{INN} a :Drug ; :drug_name {name} .
 source		SELECT INN, name FROM Drug
 
 mappingId	urn:MAPID-4b337ebad3bf46b2b3990c4fa2b7b6fe(0)(0)
-target		:user/{user_id} :has_disease :disease/{disease_id} . 
+target		:user/{user_id} :has_disease <{disease_id}> . 
 source		SELECT user_id, disease_id  FROM Suffers_from
 
 mappingId	urn:MAPID-4b337ebad3bf46b2b3990c4fa2b7b6fe(0)(0)(0)
