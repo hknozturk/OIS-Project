@@ -8,6 +8,8 @@ import { SparqlService } from 'src/app/services/sparql.service';
 })
 export class UserPageComponent implements OnInit {
   symptoms: [];
+  subSymptoms: [];
+  hasSubClass: Array<string> = [];
 
   constructor(private sparql: SparqlService) {}
 
@@ -20,11 +22,15 @@ export class UserPageComponent implements OnInit {
 
   getSubClasses(symptomName: string) {
     this.sparql.querySelectSymptom(symptomName).subscribe(res => {
+      this.subSymptoms = res.results.bindings;
       console.log(res);
     });
 
     this.sparql.checkHasSubClass(symptomName).subscribe(res => {
-      console.log(res);
+      Object.keys(res.results.bindings).forEach((key: string) => {
+        this.hasSubClass.push(res.results.bindings[key].symptomName.value);
+      });
+      console.log(this.hasSubClass);
     });
   }
 }
