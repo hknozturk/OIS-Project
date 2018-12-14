@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { mergeMap, filter, map, merge } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { DataServiceService } from 'src/app/services/data-service.service';
 
 @Component({
   selector: 'app-titlebar',
@@ -11,12 +12,18 @@ import { Subscription } from 'rxjs';
 export class TitlebarComponent implements OnInit, OnDestroy {
   activeRouteSegment: string;
   activeRouteSegmentSubscription: Subscription;
+  isLogged: boolean;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(
+    private dataService: DataServiceService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     const self = this;
     this.startObservingActiveRoute();
+    this.isLogged = this.dataService.isLoggedIn;
   }
 
   ngOnDestroy() {
@@ -45,5 +52,10 @@ export class TitlebarComponent implements OnInit, OnDestroy {
           self.activeRouteSegment = s;
         });
     }
+  }
+
+  logout() {
+    this.dataService.logout();
+    this.router.navigate(['/public']);
   }
 }

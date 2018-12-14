@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { DataServiceService } from './services/data-service.service';
+import { SparqlService } from './services/sparql.service';
 import { UserPageComponent } from './components/user-page/user-page.component';
 import { PublicComponent } from './components/public/public.component';
 import { RegistrationComponent } from './components/registration/registration.component';
@@ -15,6 +16,7 @@ import { DiseasesComponent } from './components/diseases/diseases.component';
 import { TitlebarComponent } from './views/titlebar/titlebar.component';
 import { SearchPipe } from './pipes/search.pipe';
 import { SparqlConsoleComponent } from './components/sparql-console/sparql-console.component';
+import { RemoveSpacePipe } from './pipes/remove-space.pipe';
 
 @NgModule({
   declarations: [
@@ -27,10 +29,11 @@ import { SparqlConsoleComponent } from './components/sparql-console/sparql-conso
     DiseasesComponent,
     SparqlConsoleComponent,
     TitlebarComponent,
-    SearchPipe
+    SearchPipe,
+    RemoveSpacePipe
   ],
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
-  providers: [DataServiceService],
+  providers: [DataServiceService, SparqlService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

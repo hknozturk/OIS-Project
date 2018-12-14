@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { DataServiceService } from 'src/app/services/data-service.service';
+import { SparqlService } from 'src/app/services/sparql.service';
 
 @Component({
   selector: 'app-diseases',
@@ -7,7 +7,7 @@ import { DataServiceService } from 'src/app/services/data-service.service';
   styleUrls: ['./diseases.component.scss']
 })
 export class DiseasesComponent implements OnInit {
-  constructor(private dataService: DataServiceService) {}
+  constructor(private sparql: SparqlService) {}
   diseases: [];
   diseaseName = '';
   diseaseDescription = '';
@@ -15,8 +15,7 @@ export class DiseasesComponent implements OnInit {
   diseaseSearch: string;
 
   ngOnInit() {
-    this.dataService.queryDiseaseOnt().subscribe(res => {
-      console.log(res);
+    this.sparql.queryDiseaseOnt().subscribe(res => {
       this.diseases = res.results.bindings;
     });
   }

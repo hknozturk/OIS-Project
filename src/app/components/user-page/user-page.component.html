@@ -1,3 +1,43 @@
-<p>
-  user-page works!
-</p>
+<app-titlebar></app-titlebar>
+
+<div class="container col-12">
+  <div class="row justify-content-center">
+    <div class="col-3 my-card">
+      <div class="row justify-content-center scrollable-container">
+        <div
+          class="card col-12 p-1 clickable"
+          *ngFor="let symptom of symptoms"
+          (click)="getSubClasses(symptom.symptomName.value)"
+        >
+          <div class="card-image-container text-center">
+            <img
+              src="../../../assets/symptoms/{{ symptom.symptomName.value | removeSpace }}.png"
+            />
+          </div>
+          <div class="card-title-container text-center">
+            <span>{{ symptom.symptomName.value }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4 my-card">
+      <div class="row justify-content-center scrollable-container">
+        <div
+          class="card col-12 p-1 clickable"
+          *ngFor="let symptom of symptoms"
+          (click)="getSubClasses(symptom.symptomName.value)"
+        >
+          <div class="card-image-container text-center">
+            <img
+              src="../../../assets/symptoms/{{ symptom.symptomName.value | removeSpace }}.png"
+            />
+          </div>
+          <div class="card-title-container text-center">
+            <span>{{ symptom.symptomName.value }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-5 my-card"></div>
+  </div>
+</div>

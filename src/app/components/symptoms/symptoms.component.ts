@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataServiceService } from 'src/app/services/data-service.service';
+import { SparqlService } from 'src/app/services/sparql.service';
 
 @Component({
   selector: 'app-symptoms',
@@ -9,22 +9,20 @@ import { DataServiceService } from 'src/app/services/data-service.service';
 export class SymptomsComponent implements OnInit {
   symptoms: [];
   symptomName = '';
-  symptomDescription = '';
   selectedRow: number;
   symptomSearch: string;
 
-  constructor(private dataService: DataServiceService) {}
+  constructor(private sparql: SparqlService) {}
 
   ngOnInit() {
-    this.dataService.querySymptomOnt().subscribe(res => {
+    this.sparql.querySymptomOnt().subscribe(res => {
       console.log(res);
       this.symptoms = res.results.bindings;
     });
   }
 
-  // getDescription(index: number, symptom: {}) {
-  //   this.selectedRow = index;
-  //   this.diseaseName = symptom['diseaseName'].value;
-  //   this.diseaseDescription = disease['definition'].value;
-  // }
+  getDescription(index: number, symptom: {}) {
+    this.selectedRow = index;
+    this.symptomName = symptom['symptomName'].value;
+  }
 }
