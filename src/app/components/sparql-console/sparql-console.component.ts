@@ -23,7 +23,8 @@ export class SparqlConsoleComponent implements OnInit, AfterViewInit {
       getUsedPrefixes: yasqe.getPrefixesFromQuery
     });
 
-    yasqe.options.sparql.callbacks.complete = yasr.setResponse; 
+    yasqe.setSize(1100, 400);
+    yasqe.options.sparql.callbacks.complete = yasr.setResponse;
 
   }
 }
