@@ -9,6 +9,7 @@ import { PublicComponent } from './components/public/public.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { SymptomsComponent } from './components/symptoms/symptoms.component';
 import { DiseasesComponent } from './components/diseases/diseases.component';
+import { SparqlConsoleComponent } from './components/sparql-console/sparql-console.component';
 
 const routes: Routes = [
   { path: 'public', component: PublicComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'diseases', component: DiseasesComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
+  { path: 'sparql', component: SparqlConsoleComponent },
   { path: 'profile', component: UserPageComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'public', pathMatch: 'full' }
 ];

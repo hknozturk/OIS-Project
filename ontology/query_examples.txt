@@ -1,0 +1,50 @@
+### QUERY GET USER + DISEASE_NAME + DISEASE_DESC ####
+
+PREFIX mydoc: <http://www.mydoc.be#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+
+SELECT DISTINCT ?user ?diseaseName ?diseaseDescription
+WHERE {
+  ?user mydoc:has_disease ?diseaseID .
+  ?diseaseID rdfs:label ?diseaseName .
+  ?diseaseID obo:IAO_0000115 ?diseaseDescription .
+  ?diseaseID rdfs:subClassOf ?disease .
+  FILTER REGEX(STR(?diseaseID), 'DOID_')
+}
+
+# For each user, get its disease + the department, doctor and hospital that are specialized in that disease 
+
+PREFIX mydoc: <http://www.mydoc.be#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+
+
+SELECT DISTINCT ?user ?diseaseID ?departmentName ?hospitalName ?doctorName
+WHERE {
+?user mydoc:has_disease ?diseaseID .
+?department mydoc:is_specialized ?diseaseID .
+?department mydoc:department_name ?departmentName .
+?hospital mydoc:has_department ?department .
+?hospital mydoc:hospital_name ?hospitalName .
+?doctor mydoc:works ?department .
+?doctor mydoc:doctor_name ?doctorName .
+
+}
+
+
+# GET DRUG FOR narcolepsy
+
+PREFIX mydoc: <http://www.mydoc.be#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+
+SELECT DISTINCT ?drugName ?drugINN
+WHERE {
+  ?disease rdfs:label "narcolepsy" .
+  ?drug mydoc:heals ?disease .
+  ?drug mydoc:drug_name ?drugName .
+  ?drug mydoc:INN ?drugINN
+}

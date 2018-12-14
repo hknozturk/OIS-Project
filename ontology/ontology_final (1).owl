@@ -26,6 +26,12 @@
           rdfs:range :Symptom .
 
 
+###  http://www.mydoc.be#has_department
+:has_department rdf:type owl:ObjectProperty ;
+                rdfs:domain :Hospital ;
+                rdfs:range :Department .
+
+
 ###  http://www.mydoc.be#has_disease
 :has_disease rdf:type owl:ObjectProperty ;
              rdfs:domain :User ;
@@ -37,12 +43,6 @@
        rdfs:subPropertyOf owl:topObjectProperty ;
        rdfs:domain :Drug ;
        rdfs:range :Disease .
-
-
-###  http://www.mydoc.be#includes
-:includes rdf:type owl:ObjectProperty ;
-          rdfs:domain :Hospital ;
-          rdfs:range :Department .
 
 
 ###  http://www.mydoc.be#isCommonConsequence
@@ -129,6 +129,12 @@
       rdfs:range xsd:dateTime .
 
 
+###  http://www.mydoc.be#department_name
+:department_name rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Department ;
+                 rdfs:range xsd:string .
+
+
 ###  http://www.mydoc.be#doctor_name
 :doctor_name rdf:type owl:DatatypeProperty ;
              rdfs:domain :Doctor ;
@@ -181,7 +187,7 @@
 :inami rdf:type owl:DatatypeProperty ;
        rdfs:subPropertyOf owl:topDataProperty ;
        rdfs:domain :Doctor ;
-       rdfs:range xsd:int .
+       rdfs:range xsd:integer .
 
 
 ###  http://www.mydoc.be#lastname
@@ -193,7 +199,7 @@
 ###  http://www.mydoc.be#number
 :number rdf:type owl:DatatypeProperty ;
         rdfs:domain :Address ;
-        rdfs:range xsd:int .
+        rdfs:range xsd:integer .
 
 
 ###  http://www.mydoc.be#severity
@@ -223,7 +229,7 @@
 ###  http://www.mydoc.be#zip_code
 :zip_code rdf:type owl:DatatypeProperty ;
           rdfs:domain :Address ;
-          rdfs:range xsd:int .
+          rdfs:range xsd:integer .
 
 
 #################################################################

@@ -13,9 +13,20 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { SymptomsComponent } from './components/symptoms/symptoms.component';
 import { DiseasesComponent } from './components/diseases/diseases.component';
 import { TitlebarComponent } from './components/titlebar/titlebar.component';
+import { SparqlConsoleComponent } from './components/sparql-console/sparql-console.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, UserPageComponent, PublicComponent, RegistrationComponent, SymptomsComponent, DiseasesComponent, TitlebarComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    UserPageComponent,
+    PublicComponent,
+    RegistrationComponent,
+    SparqlConsoleComponent,
+    DiseasesComponent,
+    SymptomsComponent,
+    TitlebarComponent
+  ],
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [DataServiceService],
   bootstrap: [AppComponent]
