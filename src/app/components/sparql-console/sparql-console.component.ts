@@ -1,5 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { DataServiceService } from '../../services/data-service.service';
 import * as YASQE from 'node_modules/yasgui-yasqe';
+import * as YASR from 'yasgui-yasr';
+
 
 @Component({
   selector: 'app-sparql-console',
@@ -7,25 +10,33 @@ import * as YASQE from 'node_modules/yasgui-yasqe';
   styleUrls: ['./sparql-console.component.scss']
 })
 export class SparqlConsoleComponent implements OnInit, AfterViewInit {
-  constructor() {}
+  constructor(
+    private dataService: DataServiceService,
+  ) {}
 
   innerResults: HTMLElement;
 
-  ngOnInit() {
-    YASQE.defaults.sparql.showQueryButton = true;
-    YASQE.defaults.sparql.endpoint = 'sparql';
-    YASQE.defaults.sparql.callbacks.success = function(data) {
-      console.log(data);
-      this.innerResults = this.json2table(data);
-    };
-  }
+  ngOnInit() {  
 
-  ngAfterViewInit() {
     const yasqe = YASQE(document.getElementById('yasqe'));
+
+    const yasr = YASR(document.getElementById("yasr"), {
+      //this way, the URLs in the results are prettified using the defined prefixes in the query
+      getUsedPrefixes: yasqe.getPrefixesFromQuery,
+      useGoogleCharts: false
+    });
+
+    YASQE.defaults.sparql.showQueryButton = true;
+    YASQE.defaults.sparql.endpoint = "http://localhost:8080/rdf4j-server/repositories/FINAL_FED";
+    YASQE.defaults.sparql.callbacks.success =  yasr.setResponse;
+
+  }
+  
+  ngAfterViewInit() {
   }
 
   json2table(json, classes) {
-    const cols = Object.keys(json[0]);
+    const cols = Object.keys(json);
 
     let headerRow = '';
     let bodyRows = '';
@@ -60,6 +71,7 @@ export class SparqlConsoleComponent implements OnInit, AfterViewInit {
   capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+  
 }
 
 // YASQE.defaults.sparql.showQueryButton = true;

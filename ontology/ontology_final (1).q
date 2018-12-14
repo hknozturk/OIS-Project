@@ -39,13 +39,16 @@ WHERE {
 PREFIX : <http://www.mydoc.be#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-# Get the user and the symptoms + severity they provided
+# For each user, get its disease + the department, doctor and hospital that are specialized in that disease 
 
-SELECT DISTINCT ?user ?diseaseID ?departmentName
+SELECT DISTINCT ?user ?diseaseID ?departmentName ?hospitalName ?doctorName
 WHERE {
 ?user :has_disease ?diseaseID .
 ?department :is_specialized ?diseaseID .
 ?department :department_name ?departmentName .
-
+?hospital :has_department ?department .
+?hospital :hospital_name ?hospitalName .
+?doctor :works ?department .
+?doctor :doctor_name ?doctorName .
 
 }
