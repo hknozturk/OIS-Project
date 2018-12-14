@@ -5,38 +5,76 @@
     <div class="col-3 my-card">
       <div class="row justify-content-center scrollable-container">
         <div
-          class="card col-12 p-1 clickable"
+          class="card col-12 pt-1 clickable"
           *ngFor="let symptom of symptoms"
           (click)="getSubClasses(symptom.symptomName.value)"
         >
-          <div class="card-image-container text-center">
-            <img
-              src="../../../assets/symptoms/{{ symptom.symptomName.value | removeSpace }}.png"
-            />
-          </div>
-          <div class="card-title-container text-center">
-            <span>{{ symptom.symptomName.value }}</span>
+          <div class="row">
+            <div class="col-10">
+              <div class="card-image-container text-center">
+                <img
+                  src="../../../assets/symptoms/{{ symptom.symptomName.value | removeSpace }}.png"
+                />
+              </div>
+              <div class="card-title-container text-center">
+                <span>{{ symptom.symptomName.value }}</span>
+              </div>
+            </div>
+            <div class="col-2 vcenter">
+              <img
+                src="../../../assets/right-arrow.png"
+                height="48px"
+                width="36px"
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div class="col-4 my-card">
-      <div class="row justify-content-center scrollable-container">
-        <div
-          class="card col-12 p-1 clickable"
-          *ngFor="let symptom of symptoms"
-          (click)="getSubClasses(symptom.symptomName.value)"
-        >
-          <div class="card-image-container text-center">
-            <img
-              src="../../../assets/symptoms/{{ symptom.symptomName.value | removeSpace }}.png"
-            />
-          </div>
-          <div class="card-title-container text-center">
-            <span>{{ symptom.symptomName.value }}</span>
+      <!--
+        <div class="row justify-content-center scrollable-container">
+          <div
+            class="card card-subsymptom col-12 clickable"
+            *ngFor="let subsymptom of subSymptoms"
+            (click)="getSubClasses(subsymptom.symptomName.value)"
+          >
+            <div class="row">
+              <div class="col-10">
+                <span>{{ subsymptom.symptomName.value }}</span>
+              </div>
+              <div
+                class="col-2 vcenter"
+                *ngIf="hasSubClass.includes(subsymptom.symptomName.value)"
+              >
+                <img
+                  src="../../../assets/right-arrow.png"
+                  height="48px"
+                  width="36px"
+                />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      -->
+      <table class="table table-hover">
+        <thead>
+          <th></th>
+          <th class="text-center">Dynamic Title based on selection</th>
+          <th></th>
+        </thead>
+        <div class="scrollable-container">
+          <tbody>
+            <tr *ngFor="let subsymptom of subSymptoms">
+              <td></td>
+              <td class="text text-center">
+                {{ subsymptom.symptomName.value }}
+              </td>
+              <td></td>
+            </tr>
+          </tbody>
+        </div>
+      </table>
     </div>
     <div class="col-5 my-card"></div>
   </div>
