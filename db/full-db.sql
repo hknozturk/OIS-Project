@@ -69,29 +69,6 @@ INSERT INTO `Department` VALUES (1,'Cardiology');
 UNLOCK TABLES;
 
 --
--- Table structure for table `Disease`
---
-
-DROP TABLE IF EXISTS `Disease`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Disease` (
-  `DOID_ID` varchar(255) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `Disease`
---
-
-LOCK TABLES `Disease` WRITE;
-/*!40000 ALTER TABLE `Disease` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Disease` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `Doctor`
 --
 
@@ -124,12 +101,10 @@ DROP TABLE IF EXISTS `Drug`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Drug` (
-  `INN` int(11) NOT NULL,
+  `INN` varchar(45) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `INN_UNIQUE` (`INN`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`INN`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138,7 +113,7 @@ CREATE TABLE `Drug` (
 
 LOCK TABLES `Drug` WRITE;
 /*!40000 ALTER TABLE `Drug` DISABLE KEYS */;
-INSERT INTO `Drug` VALUES (897987,'Antibiotic',1);
+INSERT INTO `Drug` VALUES ('Methylphenidate','Ritalin');
 /*!40000 ALTER TABLE `Drug` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150,12 +125,9 @@ DROP TABLE IF EXISTS `Heals`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Heals` (
-  `disease_id` int(11) NOT NULL,
-  `INN` int(11) NOT NULL,
-  PRIMARY KEY (`disease_id`,`INN`),
-  KEY `fk_Heals_1_idx` (`INN`),
-  CONSTRAINT `disease_fk` FOREIGN KEY (`disease_id`) REFERENCES `Disease` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `fk_Heals_1` FOREIGN KEY (`INN`) REFERENCES `Drug` (`INN`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  `disease_id` varchar(45) NOT NULL,
+  `drug_INN` varchar(45) NOT NULL,
+  PRIMARY KEY (`disease_id`,`drug_INN`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -165,6 +137,7 @@ CREATE TABLE `Heals` (
 
 LOCK TABLES `Heals` WRITE;
 /*!40000 ALTER TABLE `Heals` DISABLE KEYS */;
+INSERT INTO `Heals` VALUES ('http://purl.obolibrary.org/obo/DOID_8986','Methylphenidate');
 /*!40000 ALTER TABLE `Heals` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -271,6 +244,31 @@ INSERT INTO `Is_a_common_consequence` VALUES ('http://purl.obolibrary.org/obo/SY
 UNLOCK TABLES;
 
 --
+-- Table structure for table `Is_specialized`
+--
+
+DROP TABLE IF EXISTS `Is_specialized`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Is_specialized` (
+  `hospital_id` int(11) NOT NULL,
+  `department_name` varchar(45) NOT NULL,
+  `DOID_id` varchar(45) NOT NULL,
+  PRIMARY KEY (`hospital_id`,`department_name`,`DOID_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Is_specialized`
+--
+
+LOCK TABLES `Is_specialized` WRITE;
+/*!40000 ALTER TABLE `Is_specialized` DISABLE KEYS */;
+INSERT INTO `Is_specialized` VALUES (1,'Cardiology','http://purl.obolibrary.org/obo/DOID_0060319'),(1,'Cardiology','http://purl.obolibrary.org/obo/DOID_5044');
+/*!40000 ALTER TABLE `Is_specialized` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Suffers_from`
 --
 
@@ -291,7 +289,7 @@ CREATE TABLE `Suffers_from` (
 
 LOCK TABLES `Suffers_from` WRITE;
 /*!40000 ALTER TABLE `Suffers_from` DISABLE KEYS */;
-INSERT INTO `Suffers_from` VALUES (1,'http://purl.obolibrary.org/obo/DOID_0040002');
+INSERT INTO `Suffers_from` VALUES (1,'http://purl.obolibrary.org/obo/DOID_0040002'),(1,'http://purl.obolibrary.org/obo/DOID_5044');
 /*!40000 ALTER TABLE `Suffers_from` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -392,7 +390,7 @@ CREATE TABLE `user` (
   `blood_type` enum('0 Rh+','0 Rh-','A Rh+','A Rh-','B Rh+','B Rh-','AB Rh+','AB Rh-') DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -401,7 +399,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('hkn.ozturk.94@gmail.com','Hakan','Ozturk','$2b$10$aYWz57bKU9eMXr3nABJkMeYA2ElTYWU8wEEVlVKXm6ofgFL9v063O',24,'male',183,74,'0 Rh+',1);
+INSERT INTO `user` VALUES ('hkn.ozturk.94@gmail.com','Hakan','Ozturk','$2b$10$aYWz57bKU9eMXr3nABJkMeYA2ElTYWU8wEEVlVKXm6ofgFL9v063O',24,'male',183,74,'0 Rh+',1),('benja.engelman@gmail.com','Benjamin','Engelman','$2b$10$b2AZnI1lAJeTFRUeFxUUCutjUcwi8HDVv5qWPtxVL8XZM4taSKfsa',74,'male',200,100,'A Rh-',2);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -414,4 +412,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-12 18:35:14
+-- Dump completed on 2018-12-14 13:46:51
