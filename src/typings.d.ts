@@ -1,1 +1,3 @@
-declare var YASQUE: any;
+declare var YASQE: any;
+declare var YASR: any;
+
