@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Oleo+Script');
+
+.container {
+  background-image: url('../../../assets/medi_background.png');
+  min-height: 100%;
+  width: 100%;
+  height: 93.7vh;
+  display: flex;
+  align-items: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.welcome-text {
+  text-align: center;
+  font-family: 'Oleo Script', cursive;
+  font-size: 72px;
+}

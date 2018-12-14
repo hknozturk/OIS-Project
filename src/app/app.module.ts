@@ -10,6 +10,9 @@ import { DataServiceService } from './services/data-service.service';
 import { UserPageComponent } from './components/user-page/user-page.component';
 import { PublicComponent } from './components/public/public.component';
 import { RegistrationComponent } from './components/registration/registration.component';
+import { SymptomsComponent } from './components/symptoms/symptoms.component';
+import { DiseasesComponent } from './components/diseases/diseases.component';
+import { TitlebarComponent } from './components/titlebar/titlebar.component';
 import { SparqlConsoleComponent } from './components/sparql-console/sparql-console.component';
 
 @NgModule({
@@ -19,7 +22,10 @@ import { SparqlConsoleComponent } from './components/sparql-console/sparql-conso
     UserPageComponent,
     PublicComponent,
     RegistrationComponent,
-    SparqlConsoleComponent
+    SparqlConsoleComponent,
+    DiseasesComponent,
+    SymptomsComponent,
+    TitlebarComponent
   ],
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [DataServiceService],
