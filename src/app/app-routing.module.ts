@@ -16,7 +16,10 @@ const routes: Routes = [
   { path: 'diseases', component: DiseasesComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
-  { path: 'profile', component: UserPageComponent, canActivate: [AuthGuard] },
+  {
+    path: 'profile',
+    component: UserPageComponent /**, canActivate: [AuthGuard]*/
+  },
   { path: '**', redirectTo: 'public', pathMatch: 'full' }
 ];
 

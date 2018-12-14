@@ -1,67 +1,60 @@
 <app-titlebar></app-titlebar>
-<!--
-  <div class="container col-12">
-    <div class="row justify-content-center">
-      <div class="col-6 p-1">
-        <label class="sr-only" for="symptomSearch">Search Symptoms</label>
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <div class="input-group-text">
-              <img
-                src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDQ4NS4yMTMgNDg1LjIxMyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDg1LjIxMyA0ODUuMjEzOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTM2My45MDksMTgxLjk1NUMzNjMuOTA5LDgxLjQ3MywyODIuNDQsMCwxODEuOTU2LDBDODEuNDc0LDAsMC4wMDEsODEuNDczLDAuMDAxLDE4MS45NTVzODEuNDczLDE4MS45NTEsMTgxLjk1NSwxODEuOTUxICAgIEMyODIuNDQsMzYzLjkwNiwzNjMuOTA5LDI4Mi40MzcsMzYzLjkwOSwxODEuOTU1eiBNMTgxLjk1NiwzMTguNDE2Yy03NS4yNTIsMC0xMzYuNDY1LTYxLjIwOC0xMzYuNDY1LTEzNi40NiAgICBjMC03NS4yNTIsNjEuMjEzLTEzNi40NjUsMTM2LjQ2NS0xMzYuNDY1Yzc1LjI1LDAsMTM2LjQ2OCw2MS4yMTMsMTM2LjQ2OCwxMzYuNDY1ICAgIEMzMTguNDI0LDI1Ny4yMDgsMjU3LjIwNiwzMTguNDE2LDE4MS45NTYsMzE4LjQxNnoiIGZpbGw9IiM1OTU5NTkiLz4KCQk8cGF0aCBkPSJNNDcxLjg4Miw0MDcuNTY3TDM2MC41NjcsMjk2LjI0M2MtMTYuNTg2LDI1Ljc5NS0zOC41MzYsNDcuNzM0LTY0LjMzMSw2NC4zMjFsMTExLjMyNCwxMTEuMzI0ICAgIGMxNy43NzIsMTcuNzY4LDQ2LjU4NywxNy43NjgsNjQuMzIxLDBDNDg5LjY1NCw0NTQuMTQ5LDQ4OS42NTQsNDI1LjMzNCw0NzEuODgyLDQwNy41Njd6IiBmaWxsPSIjNTk1OTU5Ii8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg=="
-              />
-            </div>
+
+<div class="container col-12">
+  <div class="row justify-content-center">
+    <div class="col-6 p-1">
+      <label class="sr-only" for="symptomSearch">Search Symptoms</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <img
+              src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDQ4NS4yMTMgNDg1LjIxMyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDg1LjIxMyA0ODUuMjEzOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTM2My45MDksMTgxLjk1NUMzNjMuOTA5LDgxLjQ3MywyODIuNDQsMCwxODEuOTU2LDBDODEuNDc0LDAsMC4wMDEsODEuNDczLDAuMDAxLDE4MS45NTVzODEuNDczLDE4MS45NTEsMTgxLjk1NSwxODEuOTUxICAgIEMyODIuNDQsMzYzLjkwNiwzNjMuOTA5LDI4Mi40MzcsMzYzLjkwOSwxODEuOTU1eiBNMTgxLjk1NiwzMTguNDE2Yy03NS4yNTIsMC0xMzYuNDY1LTYxLjIwOC0xMzYuNDY1LTEzNi40NiAgICBjMC03NS4yNTIsNjEuMjEzLTEzNi40NjUsMTM2LjQ2NS0xMzYuNDY1Yzc1LjI1LDAsMTM2LjQ2OCw2MS4yMTMsMTM2LjQ2OCwxMzYuNDY1ICAgIEMzMTguNDI0LDI1Ny4yMDgsMjU3LjIwNiwzMTguNDE2LDE4MS45NTYsMzE4LjQxNnoiIGZpbGw9IiM1OTU5NTkiLz4KCQk8cGF0aCBkPSJNNDcxLjg4Miw0MDcuNTY3TDM2MC41NjcsMjk2LjI0M2MtMTYuNTg2LDI1Ljc5NS0zOC41MzYsNDcuNzM0LTY0LjMzMSw2NC4zMjFsMTExLjMyNCwxMTEuMzI0ICAgIGMxNy43NzIsMTcuNzY4LDQ2LjU4NywxNy43NjgsNjQuMzIxLDBDNDg5LjY1NCw0NTQuMTQ5LDQ4OS42NTQsNDI1LjMzNCw0NzEuODgyLDQwNy41Njd6IiBmaWxsPSIjNTk1OTU5Ii8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg=="
+            />
           </div>
-          <input
-            type="text"
-            id="symptomSearch"
-            name="symptomSearch"
-            class="form-control form-control-lg"
-            placeholder="Search Symptoms"
-            [(ngModel)]="symptomSearch"
-          />
         </div>
+        <input
+          type="text"
+          id="symptomSearch"
+          name="symptomSearch"
+          class="form-control form-control-lg"
+          placeholder="Search Symptoms"
+          [(ngModel)]="symptomSearch"
+        />
       </div>
     </div>
-    <div class="row">
-      <div class="col-6 col-dm-12 my-card">
-        <table class="table table-hover">
-          <thead class="thead-light">
-            <tr>
-              <th class="text text-center">Symptom Name</th>
+  </div>
+  <div class="row">
+    <div class="col-6 col-dm-12 my-card">
+      <table class="table table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th class="text text-center">Symptom Name</th>
+          </tr>
+        </thead>
+        <div class="row scrollable-container justify-content-center">
+          <tbody>
+            <tr
+              [ngClass]="{ active: selectedRow === row }"
+              *ngFor="
+                let symptom of (symptoms | search: symptomSearch);
+                let row = index
+              "
+              (click)="getDescription(row, symptom)"
+            >
+              <td class="text text-center">{{ symptom.symptomName.value }}</td>
             </tr>
-          </thead>
-          <div class="row scrollable-container justify-content-center">
-            <tbody>
-              <tr
-                [ngClass]="{ active: selectedRow === row }"
-                *ngFor="
-                  let disease of (diseases | search: diseaseSearch);
-                  let row = index
-                "
-                (click)="getDescription(row, disease)"
-              >
-                <td class="text text-center">{{ disease.diseaseName.value }}</td>
-              </tr>
-            </tbody>
-          </div>
-        </table>
-      </div>
-      <div class="col-6 col-dm-12 my-card">
-        <div class="col-12 symptom-description">
-          <div class="card text-center">
-            <div class="card-body">
-              <h5 class="card-title">{{ diseaseName }}</h5>
-              <p class="card-text" *ngIf="diseaseDescription !== ''">
-                {{ diseaseDescription }}
-              </p>
-              <p class="card-text" *ngIf="diseaseDescription === ''">
-                Select Symptom
-              </p>
-            </div>
+          </tbody>
+        </div>
+      </table>
+    </div>
+    <div class="col-6 col-dm-12 my-card">
+      <div class="col-12 symptom-description">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">{{ symptomName }}</h5>
           </div>
         </div>
       </div>
     </div>
   </div>
--->
+</div>
