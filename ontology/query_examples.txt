@@ -33,3 +33,18 @@ WHERE {
 
 }
 
+
+# GET DRUG FOR narcolepsy
+
+PREFIX mydoc: <http://www.mydoc.be#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+
+SELECT DISTINCT ?drugName ?drugINN
+WHERE {
+  ?disease rdfs:label "narcolepsy" .
+  ?drug mydoc:heals ?disease .
+  ?drug mydoc:drug_name ?drugName .
+  ?drug mydoc:INN ?drugINN
+}

@@ -96,7 +96,7 @@
 ###  http://www.mydoc.be#INN
 :INN rdf:type owl:DatatypeProperty ;
      rdfs:domain :Drug ;
-     rdfs:range xsd:integer .
+     rdfs:range xsd:string .
 
 
 ###  http://www.mydoc.be#age
