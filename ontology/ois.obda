@@ -10,7 +10,7 @@ rdfs:		http://www.w3.org/2000/01/rdf-schema#
 [MappingDeclaration] @collection [[
 mappingId	urn:MAPID-4b337ebad3bf46b2b3990c4fa2b7b6fe
 target		:doctor/{INAMI} a :Doctor ; :inami {INAMI} ; :doctor_name {lastname} . 
-source		SELECT INAMI, firstname, lastname FROM Doctor
+source		SELECT INAMI, lastname FROM Doctor
 
 mappingId	urn:MAPID-4b337ebad3bf46b2b3990c4fa2b7b6fe(0)
 target		:drug/{INN} a :Drug ; :drug_name {name} . 
@@ -45,8 +45,8 @@ target		:doctor/{doctor_INAMI} :works :hospital/{hospital_id}/department/{depart
 source		Select doctor_INAMI, hospital_id, department_name FROM Works
 
 mappingId	urn:MAPID-4934efd24c98406098d72beb29ce62ca
-target		:drug/{INN} :heals :disease/{disease_id} . 
-source		SELECT INN, disease_id from Heals
+target		:drug/{drug_INN} :heals :disease/{disease_id} . 
+source		SELECT drug_INN, disease_id from Heals
 
 mappingId	urn:MAPID-a4e0fcfbe5bd423e9ca3346c217c8b26(0)
 target		:user/{user_id} :lives_at :address/{address_id} . 
@@ -69,6 +69,7 @@ target		:hospital/{hospital_id} :has_department :hospital/{hospital_id}/departme
 source		SELECT hospital_id, name from Department
 
 mappingId	urn:MAPID-a4e0fcfbe5bd423e9ca3346c217c8b26(2)
-target		:hospital/{hospital_id}/department/{department_name} :is_specialized <{disease_id}> . 
+target		:hospital/{hospital_id}/department/{department_name} :is_specialized <{DOID_id}> . 
 source		SELECT hospital_id, department_name, DOID_id FROM Is_specialized
 ]]
+
