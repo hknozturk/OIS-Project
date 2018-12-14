@@ -12,7 +12,8 @@ import { PublicComponent } from './components/public/public.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { SymptomsComponent } from './components/symptoms/symptoms.component';
 import { DiseasesComponent } from './components/diseases/diseases.component';
-import { TitlebarComponent } from './components/titlebar/titlebar.component';
+import { TitlebarComponent } from './views/titlebar/titlebar.component';
+import { SearchPipe } from './pipes/search.pipe';
 import { SparqlConsoleComponent } from './components/sparql-console/sparql-console.component';
 
 @NgModule({
@@ -22,10 +23,11 @@ import { SparqlConsoleComponent } from './components/sparql-console/sparql-conso
     UserPageComponent,
     PublicComponent,
     RegistrationComponent,
-    SparqlConsoleComponent,
-    DiseasesComponent,
     SymptomsComponent,
-    TitlebarComponent
+    DiseasesComponent,
+    SparqlConsoleComponent,
+    TitlebarComponent,
+    SearchPipe
   ],
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [DataServiceService],

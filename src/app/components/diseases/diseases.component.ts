@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { DataServiceService } from 'src/app/services/data-service.service';
 
 @Component({
@@ -8,12 +8,22 @@ import { DataServiceService } from 'src/app/services/data-service.service';
 })
 export class DiseasesComponent implements OnInit {
   constructor(private dataService: DataServiceService) {}
+  diseases: [];
+  diseaseName = '';
+  diseaseDescription = '';
+  selectedRow: number;
+  diseaseSearch: string;
 
   ngOnInit() {
     this.dataService.queryDiseaseOnt().subscribe(res => {
       console.log(res);
+      this.diseases = res.results.bindings;
     });
   }
+
+  getDescription(index: number, disease: {}) {
+    this.selectedRow = index;
+    this.diseaseName = disease['diseaseName'].value;
+    this.diseaseDescription = disease['definition'].value;
+  }
 }
-
-
