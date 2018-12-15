@@ -1,19 +1,34 @@
-.my-card {
+app-titlebar {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+}
+
+.health-condition-container {
+  display: flex;
   overflow: hidden;
+  height: 100vh;
+  position: relative;
+  width: 100%;
+  padding-top: 64px;
+}
+
+.symptoms-container {
   height: 100%;
 }
 
 .scrollable-container {
   overflow-y: auto;
-  height: 90vh;
+  height: 100% !important;
+}
+
+.scrollable-container-anan {
+  overflow-y: auto;
+  height: 86vh;
 }
 
 .vcenter {
   display: flex;
   align-content: center;
   align-items: center;
-}
-
-.card-subsymptom {
-  height: 64px !important;
 }

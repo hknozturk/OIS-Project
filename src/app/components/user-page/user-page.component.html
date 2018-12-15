@@ -1,8 +1,7 @@
 <app-titlebar></app-titlebar>
-
-<div class="container col-12">
-  <div class="row justify-content-center">
-    <div class="col-3 my-card">
+<div class="health-condition-container">
+  <div class="row">
+    <div class="col-3 symptoms-container">
       <div class="row justify-content-center scrollable-container">
         <div
           class="card col-12 pt-1 clickable"
@@ -31,51 +30,54 @@
         </div>
       </div>
     </div>
-    <div class="col-4 my-card">
-      <!--
-        <div class="row justify-content-center scrollable-container">
-          <div
-            class="card card-subsymptom col-12 clickable"
-            *ngFor="let subsymptom of subSymptoms"
-            (click)="getSubClasses(subsymptom.symptomName.value)"
-          >
-            <div class="row">
-              <div class="col-10">
-                <span>{{ subsymptom.symptomName.value }}</span>
-              </div>
-              <div
-                class="col-2 vcenter"
-                *ngIf="hasSubClass.includes(subsymptom.symptomName.value)"
-              >
-                <img
-                  src="../../../assets/right-arrow.png"
-                  height="48px"
-                  width="36px"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      -->
+    <div class="col-3 symptoms-container">
       <table class="table table-hover">
         <thead>
-          <th></th>
-          <th class="text-center">Dynamic Title based on selection</th>
+          <th class="clickable" *ngIf="subLevel > 0" (click)="backToParent()">
+            <img src="../../../assets/back.png" height="24px" width="24px" />
+          </th>
+          <th *ngIf="subLevel === 0"></th>
+          <th class="text-center">{{ selectedSymptom }}</th>
           <th></th>
         </thead>
-        <div class="scrollable-container">
+      </table>
+      <div class="scrollable-container-anan">
+        <table class="table table-hover">
           <tbody>
             <tr *ngFor="let subsymptom of subSymptoms">
-              <td></td>
+              <td
+                class="clickable"
+                (click)="
+                  addSymptom(
+                    subsymptom.symptomName.value,
+                    subsymptom.symptomId.value
+                  )
+                "
+              >
+                <img src="../../../assets/add.png" height="24px" width="24px" />
+              </td>
               <td class="text text-center">
                 {{ subsymptom.symptomName.value }}
               </td>
-              <td></td>
+              <td
+                class="clickable"
+                *ngIf="hasSubClass.includes(subsymptom.symptomName.value)"
+                (click)="getSubLevel(subsymptom.symptomName.value)"
+              >
+                <img
+                  src="../../../assets/right-arrow.png"
+                  height="24px"
+                  width="24px"
+                />
+              </td>
+              <td
+                *ngIf="!hasSubClass.includes(subsymptom.symptomName.value)"
+              ></td>
             </tr>
           </tbody>
-        </div>
-      </table>
+        </table>
+      </div>
     </div>
-    <div class="col-5 my-card"></div>
+    <div class="col-5"></div>
   </div>
 </div>

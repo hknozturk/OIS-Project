@@ -70,14 +70,15 @@ export class SparqlService {
   querySelectSymptom(subClassOf: string): Observable<any> {
     const myQuery =
       this.symptomPrefix +
-      'SELECT DISTINCT ?symptomName \n\
+      'SELECT DISTINCT ?symptomName ?symptomId \n\
       WHERE \n\
       { \n\
         ?symptom rdfs:label "' +
       subClassOf +
       '" . \n\
         ?symptoms rdfs:subClassOf ?symptom . \n\
-        ?symptoms rdfs:label ?symptomName \n\
+        ?symptoms rdfs:label ?symptomName . \n\
+        ?symptoms oboInOwl:id ?symptomId \n\
       }';
 
     return this.http.get('http://localhost:3030/ois/query', {
