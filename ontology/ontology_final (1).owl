@@ -105,6 +105,12 @@
      rdfs:range xsd:integer .
 
 
+###  http://www.mydoc.be#anonymous_ID
+:anonymous_ID rdf:type owl:DatatypeProperty ;
+              rdfs:domain :User ;
+              rdfs:range xsd:integer .
+
+
 ###  http://www.mydoc.be#blood_type
 :blood_type rdf:type owl:DatatypeProperty ;
             rdfs:domain :User ;
@@ -153,18 +159,6 @@
            rdfs:range xsd:string .
 
 
-###  http://www.mydoc.be#email
-:email rdf:type owl:DatatypeProperty ;
-       rdfs:domain :User ;
-       rdfs:range xsd:string .
-
-
-###  http://www.mydoc.be#firstname
-:firstname rdf:type owl:DatatypeProperty ;
-           rdfs:domain :User ;
-           rdfs:range xsd:string .
-
-
 ###  http://www.mydoc.be#gender
 :gender rdf:type owl:DatatypeProperty ;
         rdfs:domain :User ;
@@ -188,12 +182,6 @@
        rdfs:subPropertyOf owl:topDataProperty ;
        rdfs:domain :Doctor ;
        rdfs:range xsd:integer .
-
-
-###  http://www.mydoc.be#lastname
-:lastname rdf:type owl:DatatypeProperty ;
-          rdfs:domain :User ;
-          rdfs:range xsd:string .
 
 
 ###  http://www.mydoc.be#number
