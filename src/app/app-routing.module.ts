@@ -21,11 +21,13 @@ const routes: Routes = [
   { path: 'sparql', component: SparqlConsoleComponent },
   {
     path: 'profile',
-    component: UserPageComponent /*, canActivate: [AuthGuard]*/
+    component: UserPageComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'results',
-    component: ResultsComponent /*, canActivate: [AuthGuard]*/
+    component: ResultsComponent,
+    canActivate: [AuthGuard]
   },
   { path: '**', redirectTo: 'public', pathMatch: 'full' }
 ];
