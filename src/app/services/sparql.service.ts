@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Symptoms } from '../models/picked-symptoms';
+import { Disease } from '../models/disease';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SparqlService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
+  diseaseResults: Disease[] = [];
 
   symptomPrefix =
     'prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n\
@@ -113,4 +117,120 @@ export class SparqlService {
       params: { query: myQuery }
     });
   }
+
+  getRelatedDiseases(symptoms: Symptoms[]) {
+    const diseaseCollection: Disease[] = [];
+    const diseaseNameCollection: string[] = [];
+    Object.keys(symptoms).forEach((key: string) => {
+      const currentSymptom = symptoms[key].symptomName;
+
+      const myQuery =
+        this.diseasePrefix +
+        'SELECT DISTINCT ?diseaseName ?diseaseID \n\
+      WHERE \n\
+      { \n\
+        ?diseaseID rdfs:label ?diseaseName . \n\
+        ?diseaseID rdfs:subClassOf ?disease . \n\
+        ?disease owl:onProperty doid:has_symptom . \n\
+        ?disease owl:someValuesFrom ?symptomID . \n\
+        ?symptomID rdfs:label "' +
+        currentSymptom +
+        '" \n\
+      }';
+
+      const diseases = [];
+      const diseaseIds = [];
+
+      this.http
+        .get('http://localhost:3030/ois/query', {
+          headers: {
+            'Content-type': 'application/x-www-form-urlencoded',
+            Accept: 'application/sparql-results+json'
+          },
+          params: { query: myQuery }
+        })
+        .subscribe(diseaseResults => {
+          Object.keys(diseaseResults['results'].bindings).forEach(
+            (k: string) => {
+              if (diseaseCollection.length === 0) {
+                diseaseNameCollection.push(
+                  diseaseResults['results'].bindings[k].diseaseName.value
+                );
+                diseaseCollection.push(
+                  new Disease(
+                    diseaseResults['results'].bindings[k].diseaseName.value,
+                    diseaseResults['results'].bindings[k].diseaseID.value,
+                    symptoms[key].severity
+                  )
+                );
+              } else {
+                if (
+                  diseaseNameCollection.includes(
+                    diseaseResults['results'].bindings[k].diseaseName.value
+                  )
+                ) {
+                  Object.keys(diseaseCollection).forEach((dis: string) => {
+                    if (
+                      diseaseCollection[dis].diseaseName ===
+                      diseaseResults['results'].bindings[k].diseaseName.value
+                    ) {
+                      diseaseCollection[dis].probability = diseaseCollection[
+                        dis
+                      ].probability =
+                        diseaseCollection[dis].probability +
+                        symptoms[key].severity;
+                    }
+                  });
+                } else {
+                  diseaseCollection.push(
+                    new Disease(
+                      diseaseResults['results'].bindings[k].diseaseName.value,
+                      diseaseResults['results'].bindings[k].diseaseID.value,
+                      symptoms[key].severity
+                    )
+                  );
+                }
+              }
+
+              diseases.push(
+                diseaseResults['results'].bindings[k].diseaseName.value
+              );
+              diseaseIds.push(
+                diseaseResults['results'].bindings[k].diseaseID.value
+              );
+            }
+          );
+
+          symptoms[key].relatedDiseaseId = diseaseIds;
+          symptoms[key].relatedDiseaseName = diseases;
+        });
+    });
+    this.diseaseResults = diseaseCollection;
+    this.router.navigate(['/results']);
+  }
 }
+
+// get all diseases according to all symptoms
+// const myQuery =
+//   this.diseasePrefix +
+//   'SELECT (COUNT(*) AS ?nbOfDiseases) ?diseaseName ?diseaseID \n\
+// WHERE \n\
+// { \n\
+//   VALUES ?value \n\
+//   { \n ' +
+//   symptomIds +
+//   '} \n\
+//   ?diseaseID rdfs:label ?diseaseName . \n\
+//   ?diseaseID rdfs:subClassOf ?disease . \n\
+//   ?disease owl:onProperty doid:has_symptom . \n\
+//   ?disease owl:someValuesFrom ?symptomID . \n\
+//   ?symptomID rdfs:label ?value \n\
+// } GROUP BY ?diseaseName ?diseaseID';
+
+// return this.http.get('http://localhost:3030/ois/query', {
+//   headers: {
+//     'Content-type': 'application/x-www-form-urlencoded',
+//     Accept: 'application/sparql-results+json'
+//   },
+//   params: { query: myQuery }
+// });

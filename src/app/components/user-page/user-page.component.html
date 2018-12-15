@@ -83,8 +83,21 @@
         <table class="table table-hover">
           <tbody>
             <tr *ngFor="let picked of healthCondition; let rowIndex = index">
-              <td class="text text-center">{{ picked.symptomName }}</td>
-              <td class="clickable" (click)="removeSymptom(rowIndex)">
+              <td class="text-center severity-column">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="severity"
+                  placeholder="1-10"
+                  [(ngModel)]="picked.severity"
+                  name="severity"
+                />
+              </td>
+              <td class="text-center align-middle">{{ picked.symptomName }}</td>
+              <td
+                class="clickable align-middle remove-symptom"
+                (click)="removeSymptom(rowIndex)"
+              >
                 <img
                   src="../../../assets/remove.png"
                   height="24px"

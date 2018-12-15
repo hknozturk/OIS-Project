@@ -72,7 +72,6 @@ export class UserPageComponent implements OnInit {
 
   addSymptom(symtomName: string, symptomId: string) {
     this.healthCondition.push(new Symptoms(symtomName, symptomId));
-    console.log(this.healthCondition);
   }
 
   removeSymptom(index: number) {
@@ -80,6 +79,6 @@ export class UserPageComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.healthCondition);
+    this.sparql.getRelatedDiseases(this.healthCondition);
   }
 }

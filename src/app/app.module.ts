@@ -17,6 +17,7 @@ import { TitlebarComponent } from './views/titlebar/titlebar.component';
 import { SearchPipe } from './pipes/search.pipe';
 import { SparqlConsoleComponent } from './components/sparql-console/sparql-console.component';
 import { RemoveSpacePipe } from './pipes/remove-space.pipe';
+import { ResultsComponent } from './components/results/results.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { RemoveSpacePipe } from './pipes/remove-space.pipe';
     SparqlConsoleComponent,
     TitlebarComponent,
     SearchPipe,
-    RemoveSpacePipe
+    RemoveSpacePipe,
+    ResultsComponent
   ],
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [DataServiceService, SparqlService],
