@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SparqlService } from 'src/app/services/sparql.service';
+import { Symptoms } from '../../models/picked-symptoms';
 
 @Component({
   selector: 'app-user-page',
@@ -13,7 +14,7 @@ export class UserPageComponent implements OnInit {
   selectedSymptom = 'Symptoms';
   subLevel = 0;
   steps: Array<string> = [];
-  healthCondition: Array<number> = [];
+  healthCondition: Symptoms[] = [];
 
   constructor(private sparql: SparqlService) {}
 
@@ -36,11 +37,6 @@ export class UserPageComponent implements OnInit {
     this.selectedSymptom = symptomName;
     this.steps = new Array();
     this.steps.push(symptomName);
-  }
-
-  addSymptom(symtomName: string, symptomId: string) {
-    this.healthCondition[symptomId] = 2;
-    console.log(this.healthCondition);
   }
 
   getSubLevel(symptomName: string) {
@@ -72,5 +68,18 @@ export class UserPageComponent implements OnInit {
     });
     this.selectedSymptom = previousSymptom;
     this.subLevel--;
+  }
+
+  addSymptom(symtomName: string, symptomId: string) {
+    this.healthCondition.push(new Symptoms(symtomName, symptomId));
+    console.log(this.healthCondition);
+  }
+
+  removeSymptom(index: number) {
+    this.healthCondition.splice(index, 1);
+  }
+
+  submit() {
+    console.log(this.healthCondition);
   }
 }

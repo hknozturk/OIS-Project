@@ -1,7 +1,7 @@
 <app-titlebar></app-titlebar>
 <div class="health-condition-container">
   <div class="row">
-    <div class="col-3 symptoms-container">
+    <div class="col-4 symptoms-container">
       <div class="row justify-content-center scrollable-container">
         <div
           class="card col-12 pt-1 clickable"
@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-    <div class="col-3 symptoms-container">
+    <div class="col-4 symptoms-container">
       <table class="table table-hover">
         <thead>
           <th class="clickable" *ngIf="subLevel > 0" (click)="backToParent()">
@@ -78,6 +78,33 @@
         </table>
       </div>
     </div>
-    <div class="col-5"></div>
+    <div class="col-4 symptom-container">
+      <div class="scrollable-container-picked">
+        <table class="table table-hover">
+          <tbody>
+            <tr *ngFor="let picked of healthCondition; let rowIndex = index">
+              <td class="text text-center">{{ picked.symptomName }}</td>
+              <td class="clickable" (click)="removeSymptom(rowIndex)">
+                <img
+                  src="../../../assets/remove.png"
+                  height="24px"
+                  width="24px"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-12 text-center submit-button-container">
+        <button
+          type="button"
+          class="btn btn-outline-info"
+          *ngIf="healthCondition.length > 0"
+          (click)="submit()"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
   </div>
 </div>

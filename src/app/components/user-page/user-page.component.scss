@@ -27,8 +27,18 @@ app-titlebar {
   height: 86vh;
 }
 
+.scrollable-container-picked {
+  margin-top: 50px;
+  overflow-y: auto;
+  height: 64vh;
+}
+
 .vcenter {
   display: flex;
   align-content: center;
   align-items: center;
+}
+
+.submit-button-container {
+  padding-top: 120px;
 }
