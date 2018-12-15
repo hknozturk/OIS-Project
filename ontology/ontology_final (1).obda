@@ -27,7 +27,7 @@ target		:user/{user_id} :has_disease <{disease_id}> .
 source		SELECT user_id, disease_id  FROM Suffers_from
 
 mappingId	urn:MAPID-4b337ebad3bf46b2b3990c4fa2b7b6fe(0)(0)(0)
-target		:symptoms/{symp1_id} :isCommonConsequence :symptoms/{symp2_id} . 
+target		<{symp1_id}> :isCommonConsequence <{symp2_id}> . 
 source		SELECT symp1_id, symp2_id FROM Is_a_common_consequence
 
 mappingId	urn:MAPID-4b337ebad3bf46b2b3990c4fa2b7b6fe(1)
@@ -77,5 +77,9 @@ source		SELECT hospital_id, name from Department
 mappingId	urn:MAPID-a4e0fcfbe5bd423e9ca3346c217c8b26(2)
 target		:hospital/{hospital_id}/department/{department_name} :is_specialized <{DOID_id}> . 
 source		SELECT hospital_id, department_name, DOID_id FROM Is_specialized
+
+mappingId	urn:MAPID-4b337ebad3bf46b2b3990c4fa2b7b6fe(4)
+target		:user/{id} a :User ; :anonymous_ID {id} ; :age {age} ; :gender {gender} ; :height {height} ; :weight {weight} ; :blood_type {blood_type} . 
+source		SELECT id, age, gender, height, weight, blood_type FROM User
 ]]
 

@@ -154,7 +154,7 @@ CREATE TABLE `Health_condition` (
   `date` datetime NOT NULL,
   `symp_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_id`,`date`),
-  CONSTRAINT `user_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `user_fk` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -279,7 +279,7 @@ CREATE TABLE `Suffers_from` (
   `user_id` int(11) NOT NULL,
   `disease_id` varchar(255) NOT NULL,
   PRIMARY KEY (`user_id`,`disease_id`),
-  CONSTRAINT `fk_Suffers_from_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_Suffers_from_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -317,6 +317,38 @@ LOCK TABLES `Symptom` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `User`
+--
+
+DROP TABLE IF EXISTS `User`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `User` (
+  `email` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `age` int(3) NOT NULL,
+  `gender` enum('male','female') DEFAULT NULL,
+  `height` int(3) NOT NULL,
+  `weight` int(3) NOT NULL,
+  `blood_type` enum('0 Rh+','0 Rh-','A Rh+','A Rh-','B Rh+','B Rh-','AB Rh+','AB Rh-') DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `User`
+--
+
+LOCK TABLES `User` WRITE;
+/*!40000 ALTER TABLE `User` DISABLE KEYS */;
+INSERT INTO `User` VALUES ('hkn.ozturk.94@gmail.com','Hakan','Ozturk','$2b$10$aYWz57bKU9eMXr3nABJkMeYA2ElTYWU8wEEVlVKXm6ofgFL9v063O',24,'male',183,74,'0 Rh+',1),('benja.engelman@gmail.com','Benjamin','Engelman','$2b$10$b2AZnI1lAJeTFRUeFxUUCutjUcwi8HDVv5qWPtxVL8XZM4taSKfsa',74,'male',200,100,'A Rh-',2);
+/*!40000 ALTER TABLE `User` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `User_location`
 --
 
@@ -328,7 +360,7 @@ CREATE TABLE `User_location` (
   `address_id` int(11) NOT NULL,
   PRIMARY KEY (`user_id`,`address_id`),
   KEY `fk_User_location_2_idx` (`address_id`),
-  CONSTRAINT `fk_User_location_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_User_location_1` FOREIGN KEY (`user_id`) REFERENCES `User` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_User_location_2` FOREIGN KEY (`address_id`) REFERENCES `Address` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -370,38 +402,6 @@ LOCK TABLES `Works` WRITE;
 INSERT INTO `Works` VALUES (1,1,'Cardiology');
 /*!40000 ALTER TABLE `Works` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `user`
---
-
-DROP TABLE IF EXISTS `user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user` (
-  `email` varchar(255) NOT NULL,
-  `first_name` varchar(255) NOT NULL,
-  `last_name` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `age` int(3) NOT NULL,
-  `gender` enum('male','female') DEFAULT NULL,
-  `height` int(3) NOT NULL,
-  `weight` int(3) NOT NULL,
-  `blood_type` enum('0 Rh+','0 Rh-','A Rh+','A Rh-','B Rh+','B Rh-','AB Rh+','AB Rh-') DEFAULT NULL,
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `user`
---
-
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('hkn.ozturk.94@gmail.com','Hakan','Ozturk','$2b$10$aYWz57bKU9eMXr3nABJkMeYA2ElTYWU8wEEVlVKXm6ofgFL9v063O',24,'male',183,74,'0 Rh+',1),('benja.engelman@gmail.com','Benjamin','Engelman','$2b$10$b2AZnI1lAJeTFRUeFxUUCutjUcwi8HDVv5qWPtxVL8XZM4taSKfsa',74,'male',200,100,'A Rh-',2);
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -412,4 +412,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-14 18:08:00
+-- Dump completed on 2018-12-15 13:06:15
