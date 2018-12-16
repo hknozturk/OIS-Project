@@ -15,7 +15,12 @@ export class SearchPipe implements PipeTransform {
 
     return value.filter(result => {
       const searchResult = String(searchParams);
-      return String(result['diseaseName']['value']).includes(searchResult);
+      // Not really pretty but it works :D
+      if (result['diseaseName']) {
+        return String(result['diseaseName']['value']).includes(searchResult);
+      } else {
+        return String(result['symptomName']['value']).includes(searchResult);
+      }
     });
   }
 }
