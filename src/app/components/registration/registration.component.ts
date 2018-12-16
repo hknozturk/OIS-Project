@@ -3,6 +3,7 @@ import { DataServiceService } from 'src/app/services/data-service.service';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
+import { Address } from 'src/app/models/address';
 
 @Component({
   selector: 'app-registration',
@@ -23,6 +24,12 @@ export class RegistrationComponent implements OnInit {
   height: number;
   weight: number;
   showAlert = false;
+
+  country: string;
+  city: string;
+  building: number;
+  zip: number;
+  street: string;
 
   constructor(
     private dataService: DataServiceService,
@@ -49,6 +56,7 @@ export class RegistrationComponent implements OnInit {
     document.getElementById('submit').style.visibility = 'hidden';
 
     const user = new User(null, null, null, null, null, null, null, null, null);
+    const address = new Address(null, null, null, null, null);
     if (typeof this.firstname === 'undefined' || this.firstname === '') {
       document.getElementById('firstname').classList.add('is-invalid');
     } else {
@@ -123,6 +131,46 @@ export class RegistrationComponent implements OnInit {
       user.weight = this.weight;
     }
 
+    if (typeof this.country === 'undefined' || this.country === '') {
+      document.getElementById('country').classList.add('is-invalid');
+    } else {
+      document.getElementById('country').classList.remove('is-invalid');
+      document.getElementById('country').classList.add('is-valid');
+      address.country = this.country;
+    }
+
+    if (typeof this.city === 'undefined' || this.city === '') {
+      document.getElementById('city').classList.add('is-invalid');
+    } else {
+      document.getElementById('city').classList.remove('is-invalid');
+      document.getElementById('city').classList.add('is-valid');
+      address.city = this.city;
+    }
+
+    if (typeof this.building === 'undefined' || this.building === 0) {
+      document.getElementById('building').classList.add('is-invalid');
+    } else {
+      document.getElementById('building').classList.remove('is-invalid');
+      document.getElementById('building').classList.add('is-valid');
+      address.number = this.building;
+    }
+
+    if (typeof this.street === 'undefined' || this.street === '') {
+      document.getElementById('street').classList.add('is-invalid');
+    } else {
+      document.getElementById('street').classList.remove('is-invalid');
+      document.getElementById('street').classList.add('is-valid');
+      address.street_name = this.street;
+    }
+
+    if (typeof this.zip === 'undefined' || this.zip === 0) {
+      document.getElementById('zip').classList.add('is-invalid');
+    } else {
+      document.getElementById('zip').classList.remove('is-invalid');
+      document.getElementById('zip').classList.add('is-valid');
+      address.zip_code = this.zip;
+    }
+
     if (
       user.first_name !== null &&
       user.last_name !== null &&
@@ -132,7 +180,12 @@ export class RegistrationComponent implements OnInit {
       user.blood_type !== null &&
       user.age !== null &&
       user.height !== null &&
-      user.weight !== null
+      user.weight !== null &&
+      address.country !== null &&
+      address.city !== null &&
+      address.number !== null &&
+      address.street_name !== null &&
+      address.zip_code !== null
     ) {
       this.dataService.userRegistration(user).subscribe(res => {
         document.getElementById('cancel').style.visibility = 'visible';
@@ -140,6 +193,7 @@ export class RegistrationComponent implements OnInit {
 
         if (res.message === 'Registration successful') {
           this.router.navigate(['/login']);
+          this.dataService.userAddAddress(user, address);
         } else {
           this.emailWarning =
             'Email you entered already exists. Please try another email address';

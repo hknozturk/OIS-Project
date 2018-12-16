@@ -149,43 +149,80 @@
             <div class="invalid-feedback">Please enter your weight</div>
           </div>
         </div>
-        <!--
-          <div class="form-row">
-            <div class="col-md-6 mb-3">
-              <label for="validationServer03">City</label>
-              <input
-                type="text"
-                class="form-control is-invalid"
-                id="validationServer03"
-                placeholder="City"
-                required
-              />
-              <div class="invalid-feedback">Please provide a valid city.</div>
-            </div>
-            <div class="col-md-3 mb-3">
-              <label for="validationServer04">State</label>
-              <input
-                type="text"
-                class="form-control is-invalid"
-                id="validationServer04"
-                placeholder="State"
-                required
-              />
-              <div class="invalid-feedback">Please provide a valid state.</div>
-            </div>
-            <div class="col-md-3 mb-3">
-              <label for="validationServer05">Zip</label>
-              <input
-                type="text"
-                class="form-control is-invalid"
-                id="validationServer05"
-                placeholder="Zip"
-                required
-              />
-              <div class="invalid-feedback">Please provide a valid zip.</div>
+
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="street">Street</label>
+            <input
+              type="text"
+              class="form-control"
+              id="street"
+              placeholder="Street"
+              required
+              [(ngModel)]="street"
+              name="street"
+            />
+            <div class="invalid-feedback">Please enter your street</div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="building">No</label>
+            <input
+              type="number"
+              class="form-control"
+              id="building"
+              placeholder="No"
+              required
+              [(ngModel)]="building"
+              name="building"
+            />
+            <div class="invalid-feedback">
+              Please enter your building number
             </div>
           </div>
-        -->
+          <div class="col-md-3 mb-3">
+            <label for="country">City</label>
+            <input
+              type="text"
+              class="form-control"
+              id="city"
+              placeholder="City"
+              required
+              [(ngModel)]="city"
+              name="city"
+            />
+            <div class="invalid-feedback">Please enter your country</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-3 mb-3">
+            <label for="zip">Zip</label>
+            <input
+              type="number"
+              class="form-control"
+              id="zip"
+              placeholder="Zip"
+              required
+              [(ngModel)]="zip"
+              name="zip"
+            />
+            <div class="invalid-feedback">Please enter your zip no</div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="country">Country</label>
+            <input
+              type="text"
+              class="form-control"
+              id="country"
+              placeholder="Country"
+              required
+              [(ngModel)]="country"
+              name="country"
+            />
+            <div class="invalid-feedback">Please enter your country</div>
+          </div>
+        </div>
+
         <button
           id="cancel"
           class="btn btn-danger mr-2"

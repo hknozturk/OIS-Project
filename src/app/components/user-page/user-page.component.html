@@ -91,6 +91,8 @@
                   placeholder="1-10"
                   [(ngModel)]="picked.severity"
                   name="severity"
+                  min="1"
+                  max="10"
                 />
               </td>
               <td class="text-center align-middle">{{ picked.symptomName }}</td>

@@ -1,7 +1,7 @@
 <app-titlebar></app-titlebar>
 <div class="health-condition-container">
   <div class="row">
-    <div class="col-6 symptoms-container">
+    <div class="col-6 symptoms-container" *ngIf="diseases.length > 0">
       <table class="table">
         <thead>
           <th class="text-center">Possible Diseases</th>
@@ -12,12 +12,20 @@
         <table class="table">
           <tbody>
             <tr *ngFor="let disease of diseases">
-              <td class="text text-center">{{ disease.diseaseName }}</td>
-              <td class="text text-center">%{{ disease.getProbability() }}</td>
+              <td class="text-center align-middle">
+                {{ disease.diseaseName }}
+              </td>
+              <td class="text text-center">{{ disease.diseaseDescription }}</td>
+              <td class="text text-center align-middle">
+                {{ disease.getProbability() }}%
+              </td>
             </tr>
           </tbody>
         </table>
       </div>
+    </div>
+    <div class="col-6 symptoms-container" *ngIf="diseases.length === 0">
+      <a routerLink="/profile">No disease found. Go back to user-page</a>
     </div>
     <div class="col-6 symptom-container">
       <div class="map" id="map" style="height:100%; width:100%;"></div>

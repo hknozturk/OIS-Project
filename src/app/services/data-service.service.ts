@@ -56,4 +56,21 @@ export class DataServiceService {
       headers: { 'Content-Type': 'application/json' }
     });
   }
+
+  userAddAddress(user, address) {
+    this.http
+      .post('http://localhost:8000/getuserid', user, {
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .subscribe(userid => {
+        address.id = userid['data'][0].id;
+        this.http
+          .post('http://localhost:8000/useraddress', address, {
+            headers: { 'Content-Type': 'application/json' }
+          })
+          .subscribe(addr => {
+            console.log(addr);
+          });
+      });
+  }
 }
