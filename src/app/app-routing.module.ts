@@ -26,8 +26,8 @@ const routes: Routes = [
   },
   {
     path: 'results',
-    component: ResultsComponent,
-    canActivate: [AuthGuard]
+    component: ResultsComponent
+    /*canActivate: [AuthGuard]*/
   },
   { path: '**', redirectTo: 'public', pathMatch: 'full' }
 ];
