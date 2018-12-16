@@ -11,6 +11,8 @@ export class SymptomsComponent implements OnInit {
   symptomName = '';
   selectedRow: number;
   symptomSearch: string;
+  symptomDescription = '';
+
 
   constructor(private sparql: SparqlService) {}
 
@@ -24,5 +26,7 @@ export class SymptomsComponent implements OnInit {
   getDescription(index: number, symptom: {}) {
     this.selectedRow = index;
     this.symptomName = symptom['symptomName'].value;
+    this.symptomDescription = symptom['definition'].value;
+
   }
 }

@@ -18,6 +18,7 @@ export class SparqlService {
   prefix owl: <http://www.w3.org/2002/07/owl#> \n\
   prefix xsd: <http://www.w3.org/2001/XMLSchema#> \n\
   prefix oboInOwl: <http://www.geneontology.org/formats/oboInOwl#> \n\
+  prefix obo: <http://purl.obolibrary.org/obo/> \n\
   \n\
   ';
 
@@ -35,8 +36,9 @@ export class SparqlService {
   querySymptomOnt(): Observable<any> {
     const myQuery =
       this.symptomPrefix +
-      'SELECT DISTINCT ?symptomName ?symptom \n\
+      'SELECT DISTINCT ?symptomName ?symptom ?definition \n\
     WHERE { \n\
+    ?symptom obo:IAO_0000115 ?definition . \n\
     ?symptom rdfs:label ?symptomName . \n\
     FILTER REGEX(STR(?symptom), "SYMP_") \n\
     }';

@@ -52,6 +52,12 @@
         <div class="card text-center">
           <div class="card-body">
             <h5 class="card-title">{{ symptomName }}</h5>
+            <p class="card-text" *ngIf="symptomDescription !== ''">
+              {{ symptomDescription }}
+            </p>
+            <p class="card-text" *ngIf="symptomDescription === ''">
+              Select Symptom
+            </p>
           </div>
         </div>
       </div>
