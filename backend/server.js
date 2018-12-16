@@ -37,7 +37,7 @@ app.route('/authenticate').post((req, res) => {
   let user_email = req.body.email;
   let user_password = req.body.password;
 
-  mysql_con.query('SELECT * FROM ois.user WHERE email=?', user_email, function(
+  mysql_con.query('SELECT * FROM ois.User WHERE email=?', user_email, function(
     err,
     results
   ) {
@@ -75,7 +75,7 @@ app.route('/authenticate').post((req, res) => {
 
 app.route('/getenumtypes').get((req, res) => {
   mysql_con.query(
-    "SHOW COLUMNS FROM ois.user WHERE Field = 'gender' or Field = 'blood_type'",
+    "SHOW COLUMNS FROM ois.User WHERE Field = 'gender' or Field = 'blood_type'",
     function(err, result) {
       if (err) {
         throw err;
@@ -93,7 +93,7 @@ app.route('/postnewuser').post((req, res) => {
     if (err) throw err;
 
     req.body.password = hash;
-    mysql_con.query('INSERT INTO ois.user SET ? ', req.body, function(
+    mysql_con.query('INSERT INTO ois.User SET ? ', req.body, function(
       err,
       results
     ) {
@@ -112,4 +112,58 @@ app.route('/postnewuser').post((req, res) => {
       }
     });
   });
+});
+
+app.route('/getuserid').post((req, res) => {
+  mysql_con.query(
+    'SELECT id FROM ois.User WHERE email=?',
+    req.body.email,
+    function(err, results) {
+      if (err) {
+        return res.send({
+          error: true,
+          data: [],
+          message: err
+        });
+      } else {
+        return res.send({
+          error: false,
+          data: results
+        });
+      }
+    }
+  );
+});
+
+app.route('/useraddress').post((req, res) => {
+  console.log(req);
+  mysql_con.query(
+    'INSERT INTO ois.Address(country, city, number, street_name, zip_code, id) SELECT "' +
+      req.body.country +
+      '", "' +
+      req.body.city +
+      '", "' +
+      req.body.number +
+      '", "' +
+      req.body.street_name +
+      '", "' +
+      req.body.zip_code +
+      '", id FROM ois.User WHERE id="' +
+      req.body.id +
+      '" LIMIT 1',
+    function(err, results) {
+      if (err) {
+        return res.send({
+          error: true,
+          data: [],
+          message: err
+        });
+      } else {
+        return res.send({
+          error: false,
+          data: results
+        });
+      }
+    }
+  );
 });

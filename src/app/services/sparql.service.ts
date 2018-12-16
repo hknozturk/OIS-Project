@@ -128,7 +128,7 @@ export class SparqlService {
 
       const myQuery =
         this.diseasePrefix +
-        'SELECT DISTINCT ?diseaseName ?diseaseID \n\
+        'SELECT DISTINCT ?diseaseName ?diseaseID ?diseaseDescription \n\
       WHERE \n\
       { \n\
         ?diseaseID rdfs:label ?diseaseName . \n\
@@ -137,7 +137,8 @@ export class SparqlService {
         ?disease owl:someValuesFrom ?symptomID . \n\
         ?symptomID rdfs:label "' +
         currentSymptom +
-        '" \n\
+        '" . \n\
+        ?diseaseID obo:IAO_0000115 ?diseaseDescription . \n\
       }';
 
       const diseases = [];
@@ -161,6 +162,9 @@ export class SparqlService {
                 diseaseCollection.push(
                   new Disease(
                     diseaseResults['results'].bindings[k].diseaseName.value,
+                    diseaseResults['results'].bindings[
+                      k
+                    ].diseaseDescription.value,
                     diseaseResults['results'].bindings[k].diseaseID.value,
                     symptoms[key].severity
                   )
@@ -187,6 +191,9 @@ export class SparqlService {
                   diseaseCollection.push(
                     new Disease(
                       diseaseResults['results'].bindings[k].diseaseName.value,
+                      diseaseResults['results'].bindings[
+                        k
+                      ].diseaseDescription.value,
                       diseaseResults['results'].bindings[k].diseaseID.value,
                       symptoms[key].severity
                     )
