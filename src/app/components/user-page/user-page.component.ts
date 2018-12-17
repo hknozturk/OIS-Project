@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SparqlService } from 'src/app/services/sparql.service';
 import { Symptoms } from '../../models/picked-symptoms';
+import { DataServiceService } from 'src/app/services/data-service.service';
 
 @Component({
   selector: 'app-user-page',
@@ -16,7 +17,10 @@ export class UserPageComponent implements OnInit {
   steps: Array<string> = [];
   healthCondition: Symptoms[] = [];
 
-  constructor(private sparql: SparqlService) {}
+  constructor(
+    private sparql: SparqlService,
+    private dataService: DataServiceService
+  ) {}
 
   ngOnInit() {
     this.sparql.querySelectSymptom('symptom').subscribe(res => {
@@ -79,6 +83,7 @@ export class UserPageComponent implements OnInit {
   }
 
   submit() {
+    this.dataService.addHealthCondition(this.healthCondition);
     this.sparql.getRelatedDiseases(this.healthCondition);
   }
 }
