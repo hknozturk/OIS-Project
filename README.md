@@ -7,6 +7,14 @@
 - To run Angular front-end check below.
 - Be sure that backend and frontend running in different console.
 
+# Ontologies
+
+You can find ontologies we use in our application `ontologies` folder. We use Jena-Fuseki and Jetty server to query ontologies. Check `jetty` folder and read.me file for more info.
+
+# Jena-Fuseki
+
+To run Jena-Fuseki, go to Jena-Fuseki folder you installed and execute `./fseki-server --update --mem \{YOUR-SERVER_NAME}`.
+
 # OISFrontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
