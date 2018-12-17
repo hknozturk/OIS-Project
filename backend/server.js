@@ -114,6 +114,36 @@ app.route('/postnewuser').post((req, res) => {
   });
 });
 
+app.route('/useraddress').post((req, res) => {
+  mysql_con.query(
+    'INSERT INTO ois.Address(country, city, number, street_name, zip_code) SELECT "' +
+      req.body.country +
+      '", "' +
+      req.body.city +
+      '", "' +
+      req.body.number +
+      '", "' +
+      req.body.street_name +
+      '", "' +
+      req.body.zip_code +
+      '"',
+    function(err, results) {
+      if (err) {
+        return res.send({
+          error: true,
+          data: [],
+          message: err
+        });
+      } else {
+        return res.send({
+          error: false,
+          data: results
+        });
+      }
+    }
+  );
+});
+
 app.route('/getuserid').post((req, res) => {
   mysql_con.query(
     'SELECT id FROM ois.User WHERE email=?',
@@ -135,22 +165,9 @@ app.route('/getuserid').post((req, res) => {
   );
 });
 
-app.route('/useraddress').post((req, res) => {
-  console.log(req);
+app.route('/getaddressid').get((req, res) => {
   mysql_con.query(
-    'INSERT INTO ois.Address(country, city, number, street_name, zip_code, id) SELECT "' +
-      req.body.country +
-      '", "' +
-      req.body.city +
-      '", "' +
-      req.body.number +
-      '", "' +
-      req.body.street_name +
-      '", "' +
-      req.body.zip_code +
-      '", id FROM ois.User WHERE id="' +
-      req.body.id +
-      '" LIMIT 1',
+    'SELECT id FROM ois.Address ORDER BY id DESC LIMIT 1',
     function(err, results) {
       if (err) {
         return res.send({
@@ -166,4 +183,73 @@ app.route('/useraddress').post((req, res) => {
       }
     }
   );
+});
+
+app.route('/userlocation').post((req, res) => {
+  let user_id = req.body.userid;
+  let addr_id = req.body.addressid;
+  mysql_con.query(
+    'INSERT INTO ois.User_location(user_id, address_id) VALUES("' +
+      user_id +
+      '", "' +
+      addr_id +
+      '")',
+    function(err, results) {
+      if (err) {
+        return res.send({
+          error: true,
+          data: [],
+          message: err
+        });
+      } else {
+        return res.send({
+          error: false,
+          data: results
+        });
+      }
+    }
+  );
+});
+
+app.route('/addhealthcondition').post((req, res) => {
+  let user_email = req.body.user_email;
+  let severity = req.body.severity;
+  let symp_id = req.body.symp_id;
+  mysql_con.query('SELECT id from ois.User WHERE email=?', user_email, function(
+    err,
+    result
+  ) {
+    if (err) {
+      return res.send({
+        error: true,
+        data: [],
+        message: err
+      });
+    } else {
+      console.log(result);
+      mysql_con.query(
+        'INSERT INTO ois.Health_condition(user_id, severity, date, symp_id) SELECT "' +
+          result[0].id +
+          '", "' +
+          severity +
+          '", SYSDATE(), "http://purl.obolibrary.org/obo/' +
+          symp_id +
+          '"',
+        function(err, results) {
+          if (err) {
+            return res.send({
+              error: true,
+              data: [],
+              message: err
+            });
+          } else {
+            return res.send({
+              error: false,
+              data: results
+            });
+          }
+        }
+      );
+    }
+  });
 });
