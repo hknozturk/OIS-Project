@@ -3,6 +3,7 @@ import { SparqlService } from 'src/app/services/sparql.service';
 import { Disease } from '../../models/disease';
 import * as mapboxgl from 'mapbox-gl';
 import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-results',
@@ -20,6 +21,8 @@ export class ResultsComponent implements OnInit {
 
   source: any;
   marker: any;
+
+  image: any;
 
   ngOnInit() {
     this.diseases = this.sparql.diseaseResults;
@@ -44,16 +47,45 @@ export class ResultsComponent implements OnInit {
     this.map.on('load', event => {
       // Add the data to your map as a layer
 
+      const hospitalArray = [];
+
+      hospitalArray.push({
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [50.887265, 4.307746]
+        },
+        properties: {
+          title: 'UZ Jette',
+          description: 'UZ',
+          icon: 'icon'
+        }
+      });
+
+      hospitalArray.push({
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [50.85444, 4.36037]
+        },
+        properties: {
+          title: 'Sint Jansziekenhuis',
+          description: 'Prive',
+          icon: 'icon-15'
+        }
+      });
+
       this.map.addLayer({
         id: 'hospitals',
         type: 'symbol',
         // Add a GeoJSON source containing place coordinates and information.
         source: {
           type: 'geojson',
-          data: this.getClosestHospitals(this.long, this.lat)
+          data: hospitalArray
         },
         layout: {
-          'icon-image': 'hospital-15',
+          'icon-image': 'icon',
+          'icon-size': 0.25,
           'icon-allow-overlap': true
         }
       });
