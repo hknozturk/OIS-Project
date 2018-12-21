@@ -13,7 +13,7 @@ You can find ontologies we use in our application `ontologies` folder. We use Je
 
 # Jena-Fuseki
 
-To run Jena-Fuseki, go to Jena-Fuseki folder you installed and execute `./fseki-server --update --mem \{YOUR-SERVER_NAME}`.
+To run Jena-Fuseki, go to Jena-Fuseki folder you installed and execute `./fuseki-server --update --mem /{YOUR-SERVER_NAME}`.
 
 # OISFrontend
 
